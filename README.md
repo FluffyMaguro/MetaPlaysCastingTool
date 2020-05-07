@@ -1,12 +1,8 @@
 # CastingTool
 
-Fork of Casting Tool for Halo Wars 2
+Fork of Casting Tool for Halo Wars 2 (https://github.com/teampheenix/Halo-Wars-Casting-Tool)
 
-https://github.com/teampheenix/Halo-Wars-Casting-Tool
-
-Which is a fork of StarCraft Casting Tool
-
-https://teampheenix.github.io/StarCraft-Casting-Tool/
+Which is a fork of StarCraft Casting Tool (https://teampheenix.github.io/StarCraft-Casting-Tool/)
 
 # Info
 
