@@ -1,4 +1,4 @@
-# CastingTool
+# Meta Plays Casting Tool
 
 Fork of Casting Tool for Halo Wars 2 (https://github.com/teampheenix/Halo-Wars-Casting-Tool)
 
