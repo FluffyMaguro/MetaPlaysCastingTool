@@ -54,7 +54,7 @@ class MainWindow(QMainWindow):
             mainLayout.addWidget(self.horizontalGroupBox, 0)
 
             self.setWindowTitle(
-                "WarCraft III – Casting Tool v{}".format(hwctool.__version__))
+                "WarCraft III – Meta Plays Casting Tool v{}".format(hwctool.__version__))
 
             self.window = QWidget()
             self.window.setLayout(mainLayout)
@@ -133,7 +133,7 @@ class MainWindow(QMainWindow):
 
     def updateGame(self, title):
         """updates game played"""
-        self.setWindowTitle("{} – Casting Tool v{}".format(title,hwctool.__version__)) #change title
+        self.setWindowTitle("{} – Meta Plays Casting Tool v{}".format(title,hwctool.__version__)) #change title
         hwctool.settings.races = hwctool.settings.game_races[title] #update races
         hwctool.settings.current_game = title #update current game
         
@@ -173,7 +173,7 @@ class MainWindow(QMainWindow):
                 'twitch.png')), _('Twitch'), self)
             apiAct.setToolTip(
                 _('Edit Intro-Settings and API-Settings'
-                  ' for Twitch and Nightbot'))
+                  ' for Twitch'))
             apiAct.triggered.connect(self.openApiDialog)
             settingsMenu.addAction(apiAct)
 
@@ -210,13 +210,12 @@ class MainWindow(QMainWindow):
             infoMenu.addSeparator()
 
 
-
             websiteAct = QAction(
                 QIcon(
                     hwctool.settings.getResFile('github.ico')),
-                'Github - Casting Tool', self)
+                'Github - Meta Plays Casting Tool', self)
             websiteAct.triggered.connect(lambda: self.controller.openURL(
-                "https://github.com/FluffyMaguro/CastingTool/"))
+                "https://github.com/FluffyMaguro/MetaPlaysCastingTool/"))
             infoMenu.addAction(websiteAct)
 
             ixAct = QAction(QIcon(hwctool.settings.getResFile(
@@ -550,7 +549,7 @@ class MainWindow(QMainWindow):
             if bestof == 2:
                 self.cb_minSets.setCurrentIndex(1)
             else:
-                self.cb_minSets.setCurrentIndex((bestof - 1) / 2)
+                self.cb_minSets.setCurrentIndex(int((bestof - 1) / 2))
 
     def updatePlayerCompleters(self):
         """Refresh the completer for the player line edits."""
@@ -703,15 +702,15 @@ class MainWindow(QMainWindow):
                 _("Update Twitch Title"))
             self.pb_twitchupdate.clicked.connect(self.updatetwitch_click)
 
-            self.pb_nightbotupdate = QPushButton(
-                _("Update Nightbot"))
-            self.pb_nightbotupdate.clicked.connect(self.updatenightbot_click)
+            # self.pb_nightbotupdate = QPushButton(
+            #     _("Update Nightbot"))
+            # self.pb_nightbotupdate.clicked.connect(self.updatenightbot_click)
 
             self.pb_resetscore = QPushButton(_("Reset Score"))
             self.pb_resetscore.clicked.connect(self.resetscore_click)
 
             layout.addWidget(self.pb_twitchupdate)
-            layout.addWidget(self.pb_nightbotupdate)
+            # layout.addWidget(self.pb_nightbotupdate)
             layout.addWidget(self.pb_resetscore)
 
             self.horizontalGroupBox.setLayout(layout)
@@ -730,16 +729,16 @@ class MainWindow(QMainWindow):
             self.cb_autoTwitch.setChecked(False)
             self.cb_autoTwitch.stateChanged.connect(self.autoTwitch_change)
 
-            self.cb_autoNightbot = QCheckBox(
-                _("Auto Nightbot Update"))
-            self.cb_autoNightbot.setChecked(False)
-            self.cb_autoNightbot.stateChanged.connect(
-                self.autoNightbot_change)
+            # self.cb_autoNightbot = QCheckBox(
+            #     _("Auto Nightbot Update"))
+            # self.cb_autoNightbot.setChecked(False)
+            # self.cb_autoNightbot.stateChanged.connect(
+            #     self.autoNightbot_change)
 
             layout = QGridLayout()
 
             layout.addWidget(self.cb_autoTwitch, 0, 0)
-            layout.addWidget(self.cb_autoNightbot, 0, 1)
+            # layout.addWidget(self.cb_autoNightbot, 0, 1)
 
             self.backgroundTasksBox.setLayout(layout)
 
@@ -756,15 +755,15 @@ class MainWindow(QMainWindow):
         except Exception as e:
             module_logger.exception("message")
 
-    def autoNightbot_change(self):
-        """Handle change of auto twitch check box."""
-        try:
-            if(self.cb_autoNightbot.isChecked()):
-                self.controller.autoRequestsThread.activateTask('nightbot')
-            else:
-                self.controller.autoRequestsThread.deactivateTask('nightbot')
-        except Exception as e:
-            module_logger.exception("message")
+    # def autoNightbot_change(self):
+    #     """Handle change of auto twitch check box."""
+    #     try:
+    #         if(self.cb_autoNightbot.isChecked()):
+    #             self.controller.autoRequestsThread.activateTask('nightbot')
+    #         else:
+    #             self.controller.autoRequestsThread.deactivateTask('nightbot')
+    #     except Exception as e:
+    #         module_logger.exception("message")
 
     def autoUpdate_change(self):
         """Handle change of auto score update check box."""
@@ -853,14 +852,14 @@ class MainWindow(QMainWindow):
         except Exception as e:
             module_logger.exception("message")
 
-    def updatenightbot_click(self):
-        """Handle click to change nightbot command."""
-        try:
-            self.statusBar().showMessage(_('Updating Nightbot Command...'))
-            msg = self.controller.updateNightbotCommand()
-            self.statusBar().showMessage(msg)
-        except Exception as e:
-            module_logger.exception("message")
+    # def updatenightbot_click(self):
+    #     """Handle click to change nightbot command."""
+    #     try:
+    #         self.statusBar().showMessage(_('Updating Nightbot Command...'))
+    #         msg = self.controller.updateNightbotCommand()
+    #         self.statusBar().showMessage(msg)
+    #     except Exception as e:
+    #         module_logger.exception("message")
 
     def updatetwitch_click(self):
         """Handle click to change twitch title."""

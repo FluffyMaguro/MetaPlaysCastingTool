@@ -24,7 +24,7 @@ except Exception as e:
 
 success_html = """<html>
 <head>
-<title>Halo Wars Casting Tool</title>
+<title>Meta Plays Casting Tool</title>
 <style>
 @import url('https://fonts.googleapis.com/css?family=Roboto');
 
@@ -35,15 +35,15 @@ height: 400px;
 position: relative;
 text-align: center;
 padding-top: 50px;
-color: #0d468c;
+color: #097C00;
 }
 </style>
 </head>
 
 <body>
 <div class='main'>
-<h1>Casting Tool</h1>
-<img src="https://c10.patreonusercontent.com/3/eyJ3IjoyMDB9/patreon-media/p/user/11453319/e637dfeeace8494abaf0bbda66573df1/1?token-time=2145916800&token-hash=uYiFi_nu_OxXF2JjfbQyKg_dobUmRAZdbWY4OMTLs_0%3D" height="120" width="120">
+<h1>Meta Plays Casting Tool</h1>
+<img src="https://raw.githubusercontent.com/FluffyMaguro/MetaPlaysCastingTool/master/src/hwct.png" height="100" width="100">
 <h4 style='color: black;'>
 #CONTENT#
 </h4>

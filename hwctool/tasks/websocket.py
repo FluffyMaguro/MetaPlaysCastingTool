@@ -273,6 +273,8 @@ class WebsocketThread(QThread):
             "intro", "SHOW_INTRO",
             self.__controller.getPlayerIntroData(idx))
 
+
+
     def sendData2Path(self, path, event, input_data, state=''):
         if not state:
             state = str(uuid4())
@@ -286,6 +288,25 @@ class WebsocketThread(QThread):
             data['event'] = event
             data['data'] = input_data
             data['state'] = state
+            data['game'] = hwctool.settings.current_game
+
+            print(f"Event = {data['event']}\nData = {data['data']}\nState = {data['state']}")
+
+            for item in ['logo','logo1','logo2','img']:
+                if item in data['data']:
+                    current_game = hwctool.settings.current_game.replace(' ', '')
+                    if not f'{current_game}_' in data['data'][item]: #don't let it add it multiple times
+                        new_path = data['data'][item].split('/')
+
+                        if not 'random' in new_path[-1].lower(): #use the same icon for random
+                            new_path[-1] = f'{current_game}_{new_path[-1]}'
+
+                            
+                            if event == 'CHANGE_IMAGE' and current_game == 'HaloWars2':
+                                new_path[-1] = new_path[-1].replace('.png','') + '_Scoreboard.png'
+
+                            data['data'][item] = '/'.join(new_path) #replace the original string (e.g. '../orc.png' → '../WarCraftIII_orc.png')
+
 
             paths = self.scopes.get(path, [path])
 
@@ -293,7 +314,7 @@ class WebsocketThread(QThread):
                 connections = self.connected.get(path, set()).copy()
                 for websocket in connections:
                     module_logger.info(
-                        "Sending data to '{}': {}".format(path, data))
+                        "Path: Sending data to '{}': {}".format(path, data))
                     coro = websocket.send(json.dumps(data))
                     asyncio.run_coroutine_threadsafe(coro, self.__loop)
         except Exception as e:
@@ -314,7 +335,21 @@ class WebsocketThread(QThread):
             data['event'] = event
             data['data'] = input_data
             data['state'] = state
-            module_logger.info("Sending data: %s" % data)
+            data['game'] = hwctool.settings.current_game
+
+            
+            for item in ['logo','logo1','logo2','img']:
+                if item in data['data']:
+                    current_game = hwctool.settings.current_game.replace(' ', '')
+                    if not f'{current_game}_' in data['data'][item]:
+                        new_path = data['data'][item].split('/')
+                        if not 'random' in new_path[-1].lower():
+                            new_path[-1] = f'{current_game}_{new_path[-1]}'
+
+                            data['data'][item] = '/'.join(new_path)
+
+
+            module_logger.info("WS: Sending data: %s" % data)
             coro = websocket.send(json.dumps(data))
             asyncio.run_coroutine_threadsafe(coro, self.__loop)
         except Exception as e:

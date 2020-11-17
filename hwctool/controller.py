@@ -202,9 +202,9 @@ class MainController:
             self.view.cb_autoTwitch.setChecked(
                 hwctool.settings.config.parser.getboolean("Form",
                                                           "autotwitch"))
-            self.view.cb_autoNightbot.setChecked(
-                hwctool.settings.config.parser.getboolean("Form",
-                                                          "autonightbot"))
+            # self.view.cb_autoNightbot.setChecked(
+            #     hwctool.settings.config.parser.getboolean("Form",
+            #                                               "autonightbot"))
 
         except Exception as e:
             module_logger.exception("message")
@@ -213,8 +213,8 @@ class MainController:
         """Uncheck check boxes on error."""
         if(cb == 'twitch'):
             self.view.cb_autoTwitch.setChecked(False)
-        elif(cb == 'nightbot'):
-            self.view.cb_autoNightbot.setChecked(False)
+        # elif(cb == 'nightbot'):
+        #     self.view.cb_autoNightbot.setChecked(False)
 
     def tokenRecived(self, scope, token):
         """Call to return of token."""
@@ -244,7 +244,7 @@ class MainController:
     def openURL(self, url):
         """Open URL in Browser."""
         if(len(url) < 5):
-            url = "https://teampheenix.github.io/StarCraft-Casting-Tool/"
+            url = "https://meta-plays.com/"
         try:
             webbrowser.open(url)
         except Exception as e:
@@ -289,8 +289,8 @@ class MainController:
         try:
             hwctool.settings.config.parser.set("Form", "autotwitch", str(
                 self.view.cb_autoTwitch.isChecked()))
-            hwctool.settings.config.parser.set("Form", "autonightbot", str(
-                self.view.cb_autoNightbot.isChecked()))
+            # hwctool.settings.config.parser.set("Form", "autonightbot", str(
+            #     self.view.cb_autoNightbot.isChecked()))
 
             configFile = open(hwctool.settings.configFile(),
                               'w', encoding='utf-8-sig')
@@ -334,18 +334,18 @@ class MainController:
             _('Specify your Twitch Settings to use this feature'),
             txt)
 
-        self.toggleWidget(
-            self.view.cb_autoNightbot,
-            hwctool.settings.config.nightbotIsValid(),
-            _('Specify your Nightbot Settings to use this feature'),
-            _('Automatically update the commands of your' +
-              ' nightbot in the background.'))
+        # self.toggleWidget(
+        #     self.view.cb_autoNightbot,
+        #     hwctool.settings.config.nightbotIsValid(),
+        #     _('Specify your Nightbot Settings to use this feature'),
+        #     _('Automatically update the commands of your' +
+        #       ' nightbot in the background.'))
 
-        self.toggleWidget(
-            self.view.pb_nightbotupdate,
-            hwctool.settings.config.nightbotIsValid(),
-            _('Specify your Nightbot Settings to use this feature'),
-            '')
+        # self.toggleWidget(
+        #     self.view.pb_nightbotupdate,
+        #     hwctool.settings.config.nightbotIsValid(),
+        #     _('Specify your Nightbot Settings to use this feature'),
+        #     '')
 
     def linkFile(self, file):
         """Return correct img file ending."""
@@ -538,7 +538,7 @@ class MainController:
 
             file = 'src/img/races/{}.png'
 
-            for idx in range(1):
+            for idx in range(2):
                 img = file.format(self.matchData.getRace(
                     idx, set_idx).replace(' ', '_'))
                 self.websocketThread.sendData2Path(
