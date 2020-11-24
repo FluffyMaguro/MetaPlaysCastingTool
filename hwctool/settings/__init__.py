@@ -35,11 +35,16 @@ max_no_sets = 15
 
 game_races = {"StarCraft II":("Random", "Zerg", "Terran", "Protoss"),
               "WarCraft III":("Random", "Human", "Orc", "Night Elf", "Undead"),
-              "Age of Empires IV":("Random","A", "B", "C", "D", "E"),
+              "Age of Empires IV":("Random","English", "Mongols", "C", "D", "E"),
               "Age of Empires Online":("Random","Greeks", "Egyptians", "Celts", "Persians", "Babylonians", "Norse", "Romans"),
               "Age of Mythology":("Random","Zeus", "Poseidon", "Hades", "Isis", "Ra", "Set", "Odin", "Thor", "Loki", "Oranos", "Kronos", "Gaia", "Fu Xi", "Nu Wa", "Shennong"),
+              "SpellForce 3" :("Random","Humans","Elves","Orcs","Dwarves","Dark Elves","Trolls"),
               "Halo Wars 2":("Random", "Anders", "Arbiter", "Atriox", "Colony", "Cutter","Decimus", "Forge", "Isabel", "Jerome", "Johnson", "Kinsano","Serina", "Shipmaster", "Pavium", "Voridus", "Yap Yap"),
               }
+# Try checking for updates
+
+
+
               
 current_game = 'WarCraft III'
 races = game_races[current_game]

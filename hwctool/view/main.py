@@ -293,6 +293,12 @@ class MainWindow(QMainWindow):
             gameMenu.addAction(myAct)
             self.game_list['Halo Wars 2'] = myAct
 
+            myAct = QAction(QIcon(hwctool.settings.getResFile(
+                'SF3.png')), _('SpellForce 3'), self, checkable=True)
+            myAct.triggered.connect(lambda: self.updateGame('SpellForce 3'))
+            gameMenu.addAction(myAct)
+            self.game_list['SpellForce 3'] = myAct
+
 
         except Exception as e:
             module_logger.exception("message")
