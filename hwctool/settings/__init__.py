@@ -5,6 +5,7 @@ import os
 import platform
 import sys
 import time
+import requests
 
 import appdirs
 
@@ -41,14 +42,19 @@ game_races = {"StarCraft II":("Random", "Zerg", "Terran", "Protoss"),
               "SpellForce 3" :("Random","Humans","Elves","Orcs","Dwarves","Dark Elves","Trolls"),
               "Halo Wars 2":("Random", "Anders", "Arbiter", "Atriox", "Colony", "Cutter","Decimus", "Forge", "Isabel", "Jerome", "Johnson", "Kinsano","Serina", "Shipmaster", "Pavium", "Voridus", "Yap Yap"),
               }
+
 # Try checking for updates
-
-
+try:
+    race_data = json.loads(requests.get("https://raw.githubusercontent.com/FluffyMaguro/MetaPlaysCastingTool/master/races.json").text)
+    if not race_data in (None,''):
+        game_races = race_data
+except Exception as e:
+    print(e)
+    print("Failed to check for updated races")
 
               
 current_game = 'WarCraft III'
 races = game_races[current_game]
-
 
 this.profileManager = ProfileManager()
 this.maps = []
