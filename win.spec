@@ -3,12 +3,12 @@
 block_cipher = None
 
 
-a = Analysis(['D:\\Dokumenty\\Google Drive\\Learning Python\\Casting Tool Project\\GCT\\GCT.py'],
-             pathex=['D:\\Dokumenty\\Google Drive\\Learning Python\\Casting Tool Project\\GCT', 'D:\\Dokumenty\\Google Drive\\Learning Python\\Casting Tool Project\\GCT'],
+a = Analysis(['D:\\Dokumenty\\Git Hub\\MetaPlaysCastingTool\\GCT.py'],
+             pathex=['D:\\Dokumenty\\Git Hub\\MetaPlaysCastingTool'],
              binaries=[],
              datas=[('src/*', 'src'), ('locales', 'locales')],
              hiddenimports=[],
-             hookspath=['d:\\dokumenty\\google drive\\learning python\\casting tool project\\gct\\venv\\lib\\site-packages\\pyupdater\\hooks'],
+             hookspath=['D:\\Dokumenty\\Git Hub\\MetaPlaysCastingTool\\venv\\lib\\site-packages\\pyupdater\\hooks'],
              runtime_hooks=[],
              excludes=[],
              win_no_prefer_redirects=False,
