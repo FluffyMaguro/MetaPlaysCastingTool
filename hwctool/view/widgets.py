@@ -813,9 +813,7 @@ class InitialUpdater(QProgressDialog):
         m_width = self.size().width()
         m_height = self.size().height()
         self.resize(QSize(self.sizeHint().width(), self.sizeHint().height()))
-        relativeChange = QPoint(m_width / 2, m_height / 2)\
-            - QPoint(self.size().width() / 2,
-                     self.size().height() / 2)
+        relativeChange = QPoint(int(m_width / 2), int(m_height / 2)) - QPoint(int(self.size().width() / 2),  int(self.size().height() / 2))
         self.move(self.pos() + relativeChange)
 
         self.show()

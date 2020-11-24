@@ -152,6 +152,10 @@ class MainWindow(QMainWindow):
                     self.cb_race[team_idx][player_idx].addItem(race)
 
 
+        #update styles
+        self.openStyleDialog()
+
+
     def createMenuBar(self):
         """Create the menu bar."""
         try:
