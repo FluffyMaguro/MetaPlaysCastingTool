@@ -182,7 +182,6 @@ file_path = os.path.join(getAbsPath('casting_html'), 'races.json')
 try:
     with open(file_path,'r') as f:
         game_races = json.load(f)
-    print('>>>>>>> sucessfully load local races.json')
 except:
     print("Failed to load local races.json")
     print(traceback.format_exc())

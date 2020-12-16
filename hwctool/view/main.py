@@ -1,6 +1,7 @@
 """Define the main window."""
 import logging
 import os
+from functools import partial
 
 import markdown2
 from PyQt5.QtCore import QSettings, Qt
@@ -261,47 +262,16 @@ class MainWindow(QMainWindow):
             #Choose the game
             gameMenu = menubar.addMenu(_('Game'))
 
-            myAct = QAction(QIcon(hwctool.settings.getResFile(
-                'SC2.png')), _('StarCraft II'), self, checkable=True)
-            myAct.triggered.connect(lambda: self.updateGame('StarCraft II'))
-            gameMenu.addAction(myAct)
-            self.game_list['StarCraft II'] = myAct
+            icon_dict = {'StarCraft II':'SC2.png','WarCraft III':'WC3.png','Age of Empires IV':'AOEIV.png','Age of Empires Online':'AOEO.png','Age of Mythology':'AOM.png','Halo Wars 2':'HW.png','SpellForce 3':'SF3.png'}
+            for game in hwctool.settings.game_races:
+                if game in icon_dict:
+                    myAct = QAction(QIcon(hwctool.settings.getResFile(icon_dict[game])), _(game), self, checkable=True)
+                else:
+                    myAct = QAction(QIcon(hwctool.settings.getResFile('loading.png')), _(game), self, checkable=True)
 
-            myAct = QAction(QIcon(hwctool.settings.getResFile(
-                'WC3.png')), _('WarCraft III'), self, checkable=True, checked=True)
-            myAct.triggered.connect(lambda: self.updateGame('WarCraft III'))
-            gameMenu.addAction(myAct)
-            self.game_list['WarCraft III'] = myAct
-
-            myAct = QAction(QIcon(hwctool.settings.getResFile(
-                'AOEIV.png')), _('Age of Empires IV'), self, checkable=True)
-            myAct.triggered.connect(lambda: self.updateGame('Age of Empires IV'))
-            gameMenu.addAction(myAct)
-            self.game_list['Age of Empires IV'] = myAct
-
-            myAct = QAction(QIcon(hwctool.settings.getResFile(
-                'AOEO.png')), _('Age of Empires Online'), self, checkable=True)
-            myAct.triggered.connect(lambda: self.updateGame('Age of Empires Online'))
-            gameMenu.addAction(myAct)
-            self.game_list['Age of Empires Online'] = myAct
-
-            myAct = QAction(QIcon(hwctool.settings.getResFile(
-                'AOM.png')), _('Age of Mythology'), self, checkable=True)
-            myAct.triggered.connect(lambda: self.updateGame('Age of Mythology'))
-            gameMenu.addAction(myAct)
-            self.game_list['Age of Mythology'] = myAct
-
-            myAct = QAction(QIcon(hwctool.settings.getResFile(
-                'HW.png')), _('Halo Wars 2'), self, checkable=True)
-            myAct.triggered.connect(lambda: self.updateGame('Halo Wars 2'))
-            gameMenu.addAction(myAct)
-            self.game_list['Halo Wars 2'] = myAct
-
-            myAct = QAction(QIcon(hwctool.settings.getResFile(
-                'SF3.png')), _('SpellForce 3'), self, checkable=True)
-            myAct.triggered.connect(lambda: self.updateGame('SpellForce 3'))
-            gameMenu.addAction(myAct)
-            self.game_list['SpellForce 3'] = myAct
+                myAct.triggered.connect(partial(self.updateGame, game))
+                gameMenu.addAction(myAct)
+                self.game_list[game] = myAct
 
 
         except Exception as e:
