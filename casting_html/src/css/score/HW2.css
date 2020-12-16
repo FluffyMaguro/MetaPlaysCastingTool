@@ -1,0 +1,193 @@
+:root {
+    --width: 1280px;
+    --height: 180px;
+    --middle: 248px;
+    --side: calc((var(--width) - var(--middle)) / 2);
+    --logo: 105px;
+    --font: Arial, sans-serif;
+    --bcolor: #626262;
+}
+
+body {
+    font-family: var(--font);
+}
+
+.box {
+    position: relative;
+    width: var(--width);
+    height: var(--height);
+    display: inline-block;
+    background: url(../../img/textures/HW2_Scoreboard.png);
+    background-position: center 0%;
+    background-repeat: no-repeat;
+    top: -8px;
+}
+
+.box_middle {
+    position: absolute;
+    top: 43px;
+    left: var(--side);
+    width: var(--middle);
+    height: 100%;
+    box-sizing: border-box;
+}
+
+.score {
+    font-size: 36px;
+    line-height: 75px;
+}
+
+.score_middle {
+    display: none;
+}
+
+.score_left {
+    position: absolute;
+    top: -57px;
+    left: 75px;
+    width: 50px;
+    height: 100%;
+    text-align: center;
+    filter: drop-shadow(0px 0px 2px black);
+}
+
+.score_right {
+    position: absolute;
+    top: -57px;
+    right: 35px;
+    width: 150px;
+    height: 100%;
+    text-align: center;
+    filter: drop-shadow(0px 0px 2px black);
+}
+
+.score_right:before {
+    content: ' - '
+}
+
+div.box_right {
+    position: absolute;
+    height: 100%;
+    width: var(--side);
+    right: 0px;
+}
+
+div.box_left {
+    position: absolute;
+    height: 100%;
+    width: var(--side);
+    left: 0px;
+}
+
+div.upper-text-right {
+    position: absolute;
+    font-size: 40px;
+    line-height: 55px;
+    height: 30%;
+    width: 60%;
+    top: 0px;
+    left: -70px;
+    text-align: center;
+    filter: drop-shadow(0px 0px 1px var(--bcolor));
+}
+
+div.upper-text-left {
+    position: absolute;
+    font-size: 40px;
+    line-height: 55px;
+    height: 30%;
+    width: 60%;
+    top: 0px;
+    right: -70px;
+    text-align: center;
+    filter: drop-shadow(0px 0px 1px var(--bcolor));
+}
+
+#team2, #team1 {
+    vertical-align: middle;              
+}
+
+div.mapscore-right {
+    position: absolute;
+    width: calc(var(--side) - var(--logo) - 8px);
+    left: -95px;
+    top: -92px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+div.mapscore-left {
+    position: absolute;
+    width: calc(var(--side) - var(--logo) - 8px);
+    top: -92px;
+    right: -95px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+div.circle {
+    background: #f00;
+    width: 24px;
+    height: 16px;
+    border-radius: 4px 4px 4px 4px;
+    border: 1px solid #333;
+    box-sizing: border-box;
+    margin: 2px;
+    opacity: 0.85 !important;
+    box-shadow: 0px 0px 2px #2d6199;
+    flex-shrink: 1;
+}
+
+div.lower-text {
+    position: absolute;
+    width: 100%;
+    height: 30px;
+    bottom: 0%;
+}
+
+div.logo {
+    background-size: contain;
+    background-position: center center;
+    background-repeat: no-repeat;
+    border: inset 5px transparent;
+    box-sizing: border-box;
+    filter: drop-shadow(0 2px 4px rgba(255, 255, 255, .4)) drop-shadow(0 8px 16px rgba(255, 255, 255, .1));
+    width: 107px;
+    height: 92px;
+}
+
+div.box_veryleft {
+    position: absolute;
+    height: 100%;
+    left: 162px;
+    top: -39px;
+    box-sizing: border-box;
+}
+
+div.box_veryright {
+    position: absolute;
+    height: 100%;
+    right: 160px;
+    top: -39px;
+    box-sizing: border-box;
+}
+
+.text-item {
+    color: white;
+    -webkit-font-smoothing: antialiased;
+}
+
+.winner {
+    --winner-color: #4795e8;
+    --size: 8px;
+    text-shadow: 0px 0px 2px black, 0px 0px 2px black, 0px 0px 2px black, 0px 0px 2px black, 0px 0px var(--size) var(--winner-color), 0px 0px var(--size) var(--winner-color), 0px 0px var(--size) var(--winner-color), 0px 0px var(--size) var(--winner-color), 0px 0px var(--size) var(--winner-color), 0px 0px var(--size) var(--winner-color) !important;
+    -webkit-font-smoothing: antialiased;
+}
+
+.loser {
+    filter: brightness(60%);
+}

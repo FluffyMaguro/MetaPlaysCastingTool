@@ -1,0 +1,103 @@
+@font-face {
+  font-family: 'AshleyCrawford';
+  src: url('../../img/ashley_crawford_cg.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+:root {
+  --width: 1000px;
+  --height: 390px;
+  --border-size: 2px;
+  --border-color: black;
+  --border-radius: 30px;
+}
+
+body {
+  overflow: hidden;
+  font-family: AshleyCrawford, Sans-Serif;
+}
+
+div.box {
+  width: var(--width);
+  height: var(--height);
+  position: absolute;
+  text-align: center;
+  left: calc((100% - var(--width)) / 2);
+  top: calc((100% - var(--height)) / 2);
+  background-size: cover;
+  background-position: center 55%;
+}
+
+div.box.red {
+  background-image: url("../../img/textures/AoEO_Blue.png");
+}
+
+div.box.blue {
+  background-image: url("../../img/textures/AoEO_Red.png");
+}
+
+div.race {
+  position: absolute;
+  visibility: hidden;
+}
+
+div.logo {
+  position: absolute;
+  background-size: contain;
+  background-position: left bottom;
+  background-repeat: no-repeat;
+  left: 45px;
+  bottom: 76px;
+  height: 250px;
+  width: 250px;
+  overflow: hidden;
+  filter: drop-shadow(2px 2px 2px black);
+}
+
+div.label {
+  display: none;
+}
+
+div.name {
+  position: absolute;
+  top: 15%;
+  left: 33.5%;
+  width: 59%;
+  height: 135px;
+  text-align: center;
+}
+
+div.name span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+div.team {
+  color: white;
+  position: absolute;
+  top: 66%;
+  left: 38%;
+  width: 50%;
+  height: calc(20% - 7px);
+  text-align: center;
+  font-weight: bold;
+}
+
+div.box.red div.name {
+  color: blue;
+}
+
+div.box.blue div.name {
+  color: red;
+}
+
+.text-item {
+  font-weight: bold;
+  --outline-size: 3px;
+  text-shadow: 0px 0px var(--outline-size) black, 0px 0px var(--outline-size) black, 0px 0px var(--outline-size) black, 0px 0px var(--outline-size) black, 0px 0px var(--outline-size) black, 0px 0px var(--outline-size) black, 0px 0px var(--outline-size) black, 0px 0px var(--outline-size) black, 0px 0px var(--outline-size) black, 0px 0px var(--outline-size) black, 0px 0px var(--outline-size) black, 0px 0px var(--outline-size) black;
+  -webkit-font-smoothing: antialiased;
+}

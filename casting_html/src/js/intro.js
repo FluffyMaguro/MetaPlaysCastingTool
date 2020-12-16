@@ -64,6 +64,14 @@ function Connect() {
           $(".box").removeClass('red');
         }
         $(".logo").css("display", jsonObject.data.display)
+
+        if ((jsonObject.game == 'SpellForce 3') && jsonObject.data.logo.includes('Random')) {
+            jsonObject.data.logo = 'src/img/races/SpellForce3_Random.png';
+            console.log('SF3');
+          }
+        console.log('LOGO: '+jsonObject.data.logo);
+        console.log('GAME: '+jsonObject.game);
+
         $(".logo").css("background-image", "url(" + jsonObject.data.logo + ")");
         $('.name span').html(jsonObject.data.name);
         $('.team span').html(jsonObject.data.team);
