@@ -6,6 +6,7 @@ import platform
 import sys
 import time
 import requests
+import traceback
 
 import appdirs
 
@@ -33,28 +34,6 @@ ttsDir = os.path.join(dataDir, "tts")
 
 windows = (platform.system().lower() == "windows")
 max_no_sets = 15
-
-game_races = {"StarCraft II":("Random", "Zerg", "Terran", "Protoss"),
-              "WarCraft III":("Random", "Human", "Orc", "Night Elf", "Undead"),
-              "Age of Empires IV":("Random","English", "Mongols", "C", "D", "E"),
-              "Age of Empires Online":("Random","Greeks", "Egyptians", "Celts", "Persians", "Babylonians", "Norse", "Romans"),
-              "Age of Mythology":("Random","Zeus", "Poseidon", "Hades", "Isis", "Ra", "Set", "Odin", "Thor", "Loki", "Oranos", "Kronos", "Gaia", "Fu Xi", "Nu Wa", "Shennong"),
-              "SpellForce 3" :("Random","Humans","Elves","Orcs","Dwarves","Dark Elves","Trolls"),
-              "Halo Wars 2":("Random", "Anders", "Arbiter", "Atriox", "Colony", "Cutter","Decimus", "Forge", "Isabel", "Jerome", "Johnson", "Kinsano","Serina", "Shipmaster", "Pavium", "Voridus", "Yap Yap"),
-              }
-
-# Try checking for updates
-try:
-    race_data = json.loads(requests.get("https://raw.githubusercontent.com/FluffyMaguro/MetaPlaysCastingTool/master/races.json").text)
-    if not race_data in (None,''):
-        game_races = race_data
-except Exception as e:
-    print(e)
-    print("Failed to check for updated races")
-
-              
-current_game = 'WarCraft III'
-races = game_races[current_game]
 
 this.profileManager = ProfileManager()
 this.maps = []
@@ -185,3 +164,29 @@ def idx2race(idx):
         return races[idx]
     except Exception:
         return races[0]
+
+# Default values
+
+game_races = {"StarCraft II":("Random", "Zerg", "Terran", "Protoss"),
+              "WarCraft III":("Random", "Human", "Orc", "Night Elf", "Undead"),
+              "Age of Empires IV":("Random","English", "Mongols", "C", "D", "E"),
+              "Age of Empires Online":("Random","Greeks", "Egyptians", "Celts", "Persians", "Babylonians", "Norse", "Romans"),
+              "Age of Mythology":("Random","Zeus", "Poseidon", "Hades", "Isis", "Ra", "Set", "Odin", "Thor", "Loki", "Oranos", "Kronos", "Gaia", "Fu Xi", "Nu Wa", "Shennong"),
+              "SpellForce 3" :("Random","Humans","Elves","Orcs","Dwarves","Dark Elves","Trolls"),
+              "Halo Wars 2":("Random", "Anders", "Arbiter", "Atriox", "Colony", "Cutter","Decimus", "Forge", "Isabel", "Jerome", "Johnson", "Kinsano","Serina", "Shipmaster", "Pavium", "Voridus", "Yap Yap"),
+              }
+
+# Check local file
+file_path = os.path.join(getAbsPath('casting_html'), 'races.json')
+
+try:
+    with open(file_path,'r') as f:
+        game_races = json.load(f)
+    print('>>>>>>> sucessfully load local races.json')
+except:
+    print("Failed to load local races.json")
+    print(traceback.format_exc())
+
+# Set Current game and races
+current_game = 'WarCraft III'
+races = game_races[current_game]
