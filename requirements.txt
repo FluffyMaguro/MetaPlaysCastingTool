@@ -18,7 +18,7 @@ PyNaCl==1.4.0
 PyQt5==5.15.2
 PyQt5-sip==12.8.1
 PyUpdater==3.1.1+53.g4c6b5b0
-pywin32==300
+pywin32==301
 pywin32-ctypes==0.2.0
 requests==2.25.0
 six==1.15.0
