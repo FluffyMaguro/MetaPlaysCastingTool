@@ -33,6 +33,9 @@ class matchData(QObject):
             elif scope == 'meta':
                 self.metaChangedSignal.emit()
             elif scope == 'outcome':
+                # first mark the last game
+                self.dataChanged.emit('score', {'set_idx': sum(self.getScore())-1, 'value': self.getWinner()})
+                # update outcome
                 self.dataChanged.emit('outcome', self.getWinner())
                 for idx in range(self.getNoSets()):
                     if self.getMapScore(idx) == 0:
