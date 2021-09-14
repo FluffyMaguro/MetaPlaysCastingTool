@@ -203,7 +203,7 @@ function insertIcons() {
     for (var i = 0; i < Object.keys(data['sets']).length; i++) {
       for (var j = 0; j < 2; j++) {
         var color = data['sets'][i][j];
-        $('#score' + (j + 1).toString() + '-box').append('<div class="circle" id="circle-' + (j + 1).toString() + '-' + (i + 1).toString() + '" style="nackground-color: ' + color + width_style + '"></div>');
+        $('#score' + (j + 1).toString() + '-box').append('<div class="circle" id="circle-' + (j + 1).toString() + '-' + (i + 1).toString() + '" style="background-color: ' + color + width_style + '"></div>');
       }
     }
   } catch (e) {}
