@@ -193,10 +193,17 @@ function insertIcons() {
     $('#score' + (j + 1).toString() + '-box').empty();
   }
   try {
+    // Change their width if there are too many of icons
+    let n_icons = Object.keys(data['sets']).length;
+    let width_style = "";
+    if (n_icons > 9) 
+        width_style = `; width: ${220/n_icons}px`
+      
+    // Insert icons
     for (var i = 0; i < Object.keys(data['sets']).length; i++) {
       for (var j = 0; j < 2; j++) {
         var color = data['sets'][i][j];
-        $('#score' + (j + 1).toString() + '-box').append('<div class="circle" id="circle-' + (j + 1).toString() + '-' + (i + 1).toString() + '" style="background-color: ' + color + '"></div>');
+        $('#score' + (j + 1).toString() + '-box').append('<div class="circle" id="circle-' + (j + 1).toString() + '-' + (i + 1).toString() + '" style="nackground-color: ' + color + width_style + '"></div>');
       }
     }
   } catch (e) {}
