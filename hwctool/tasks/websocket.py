@@ -290,9 +290,10 @@ class WebsocketThread(QThread):
             data['state'] = state
             data['game'] = hwctool.settings.current_game
 
-            print(f"Event = {data['event']}\nData = {data['data']}\nState = {data['state']}")
-
             for item in ['logo','logo1','logo2','img']:
+                if isinstance(data['data'], int):
+                    continue
+                
                 if item in data['data']:
                     current_game = hwctool.settings.current_game.replace(' ', '')
                     if not f'{current_game}_' in data['data'][item]: #don't let it add it multiple times
