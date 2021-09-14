@@ -58,7 +58,12 @@ class matchData(QObject):
             # module_logger.exception("message")
             self.setCustom(5)
         finally:
+            self.add_defaults()
             self.__emitSignal('meta')
+            
+    def add_defaults(self, override=False):
+        if "player_colors" not in self.__data or override:
+            self.__data["player_colors"] = ["#0164E3", "#EB0000"]
 
     def writeJsonFile(self):
         """Write json data to file."""
@@ -94,6 +99,7 @@ class matchData(QObject):
         self.__data['teams'].append({'name': 'TBD', 'tag': None})
         self.__data['sets'] = []
         self.__data['players'] = [[], []]
+        self.__data['player_colors'] = ["#0164E3", "#EB0000"]
 
     def swapTeams(self):
         module_logger.info("Swapping teams")
@@ -106,7 +112,14 @@ class matchData(QObject):
         for set_idx in range(len(self.__data['sets'])):
             self.__data['sets'][set_idx]['score'] = - \
                 self.__data['sets'][set_idx]['score']
+        self.__data["player_colors"].reverse()
         self.__emitSignal('meta')
+
+    def set_player_color(self, color, player):
+        self.__data["player_colors"][player] = color
+
+    def get_player_colors(self):
+        return tuple(self.__data["player_colors"])
 
     def getSwappedIdx(self, idx):
         if self.isSwapped():
@@ -216,6 +229,7 @@ class matchData(QObject):
             if reset_options:
                 self.setAllKill(False)
                 self.setSolo(True)
+            self.add_defaults(override=True)
         self.__emitSignal('meta')
 
     def resetLabels(self):
@@ -890,6 +904,7 @@ class matchData(QObject):
         file = 'src/img/races/{}.png'
         data['logo1'] = file.format(self.getRace(0, idx).replace(' ', '_'))
         data['logo2'] = file.format(self.getRace(1, idx).replace(' ', '_'))
+        data["player_colors"] = self.__data["player_colors"]
 
         return data
 

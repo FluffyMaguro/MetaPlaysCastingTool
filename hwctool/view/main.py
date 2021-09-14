@@ -10,7 +10,7 @@ from PyQt5.QtWidgets import (QAction, QApplication, QCheckBox, QComboBox,
                              QCompleter, QGridLayout, QGroupBox, QHBoxLayout,
                              QLabel, QMainWindow, QMenu, QMessageBox,
                              QPushButton, QSizePolicy, QSlider, QSpacerItem,
-                             QTabWidget, QToolButton, QVBoxLayout, QWidget)
+                             QTabWidget, QToolButton, QVBoxLayout, QWidget, QColorDialog)
 
 import hwctool.settings
 import hwctool.settings.config
@@ -610,6 +610,21 @@ class MainWindow(QMainWindow):
             label.setFixedWidth(self.raceWidth)
             container.addWidget(label, 0, 5, 1, 1)
 
+            # Color picker
+            self.p1_color_button = QPushButton()
+            self.p1_color_button.setText("Player color")
+            self.p1_color_button.setFixedWidth(self.raceWidth)
+            self.p1_color_button.clicked.connect(lambda: self.openColorDialog(1))
+            self.p1_color_button.setStyleSheet(f'background-color: {self.controller.matchData.get_player_colors()[0]}; color: black')
+            container.addWidget(self.p1_color_button, 1, 2, 1, 1)
+
+            self.p2_color_button = QPushButton()
+            self.p2_color_button.setText("Player color")
+            self.p2_color_button.setFixedWidth(self.raceWidth)
+            self.p2_color_button.clicked.connect(lambda: self.openColorDialog(2))
+            self.p2_color_button.setStyleSheet(f'background-color: {self.controller.matchData.get_player_colors()[1]}; color: black')
+            container.addWidget(self.p2_color_button, 1, 4, 1, 1)
+
             layout2.addLayout(container)
 
             for player_idx in range(self.max_no_sets):
@@ -677,6 +692,19 @@ class MainWindow(QMainWindow):
 
         except Exception as e:
             module_logger.exception("message")
+
+    def openColorDialog(self, player):
+        """ Opens color dialog for players"""
+        color = QColorDialog.getColor()
+        if color.isValid():
+            self.controller.matchData.set_player_color(color.name(), player - 1)
+            self.update_button_colors()
+            self.controller.matchMetaDataChanged()
+
+    def update_button_colors(self):
+        """ Updates colors for player buttons"""
+        self.p1_color_button.setStyleSheet(f'background-color: {self.controller.matchData.get_player_colors()[0]}; color: black')
+        self.p2_color_button.setStyleSheet(f'background-color: {self.controller.matchData.get_player_colors()[1]}; color: black')
 
     def createHorizontalGroupBox(self):
         """Create horizontal group box for tasks."""

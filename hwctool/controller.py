@@ -158,6 +158,7 @@ class MainController:
 
             self.view.updatePlayerCompleters()
             self.updatePlayerIntros()
+            self.view.update_button_colors()
 
         except Exception as e:
             module_logger.exception("message")
