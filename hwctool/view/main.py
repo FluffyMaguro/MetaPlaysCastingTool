@@ -92,6 +92,8 @@ class MainWindow(QMainWindow):
             if showChangelog:
                 self.openChangelog()
 
+            self.updateGame(hwctool.settings.config.parser.get("Game", "name"), show_popup=False)
+
         except Exception as e:
             module_logger.exception("message")
 
@@ -132,7 +134,7 @@ class MainWindow(QMainWindow):
 
     
 
-    def updateGame(self, title):
+    def updateGame(self, title, show_popup=True):
         """updates game played"""
         self.setWindowTitle("{} – Meta Plays Casting Tool v{}".format(title,hwctool.__version__)) #change title
         hwctool.settings.races = hwctool.settings.game_races[title] #update races
@@ -154,8 +156,12 @@ class MainWindow(QMainWindow):
 
 
         #update styles
-        self.openStyleDialog()
+        if show_popup:
+            self.openStyleDialog()
 
+        #save game
+        hwctool.settings.config.parser.set("Game", "name", title)
+        
 
     def createMenuBar(self):
         """Create the menu bar."""

@@ -6,3 +6,4 @@ safe.json
 pyu-data*
 client_config.py
 *profile.js
+.vscode/*

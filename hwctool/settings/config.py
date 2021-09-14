@@ -125,6 +125,8 @@ def setDefaultConfigAll():
     setDefaultConfig("Intros", "tts_pitch", "0.0")
     setDefaultConfig("Intros", "tts_rate", "1.0")
 
+    setDefaultConfig("Game", "name", "WarCraft III")
+
 
 def nightbotIsValid():
     """Check if nightbot data is valid."""
