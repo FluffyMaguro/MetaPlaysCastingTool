@@ -27,7 +27,7 @@ class Controller {
   }
 
   loadCssFile(file = null) {
-    if (file == null) file = 'src/css/' + this.name + '/Default.css';
+    if (file == null) file = 'src/css/' + this.name + '/WC3.css';
     this.style = file;
     console.log(file);
     var fileref = document.createElement("link");
@@ -41,7 +41,7 @@ class Controller {
   }
 
   setStyle(file = null) {
-    if (file == null) file = 'src/css/' + this.name + '/Default.css';
+    if (file == null) file = 'src/css/' + this.name + '/WC3.css';
     if (file != this.style) {
       this.storeData('css', file);
       location.reload();
