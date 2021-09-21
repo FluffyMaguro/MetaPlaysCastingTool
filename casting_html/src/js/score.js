@@ -19,7 +19,7 @@ function init() {
   loadStoredData();
   initHide();
   connectWebsocket();
-  setTimeout(function() {
+  setTimeout(function () {
     initAnimation(false);
   }, 1000);
 }
@@ -30,12 +30,12 @@ function connectWebsocket() {
   port = parseInt("0x".concat(profile), 16);
   socket = new WebSocket("ws://127.0.0.1:".concat(port, "/", path));
 
-  socket.onopen = function() {
+  socket.onopen = function () {
     console.log("Connected!");
     isopen = true;
   }
 
-  socket.onmessage = function(message) {
+  socket.onmessage = function (message) {
     var jsonObject = JSON.parse(message.data);
     console.log("Message received");
     setCurrentGame(jsonObject.game);
@@ -59,33 +59,32 @@ function connectWebsocket() {
     }
   }
 
-  socket.onclose = function(e) {
+  socket.onclose = function (e) {
     console.timeEnd('connectWebsocket');
     console.log("Connection closed.");
     socket = null;
     isopen = false
-    setTimeout(function() {
+    setTimeout(function () {
       connectWebsocket();
     }, reconnectIntervalMs);
   }
 }
 
 function setCurrentGame(data) {
-  if (data==null) {return};
+  if (data == null) { return };
   currentGame = data.toString();
   console.log('Setting current game to: ' + currentGame);
   udpateResultFormat();
-        
 }
 
 function udpateResultFormat() {
   var current_text = $('#score').text();
-  console.log('Current text: '+ current_text)
-    if (currentGame == 'Age of Mythology' || currentGame == 'Age of Empires Online' || currentGame == 'WarCraft III') {
-       $('#score').text(current_text.replace('Bo ','Best of '));
-      } else {
-        $('#score').text(current_text.replace('Best of ','Bo '));
-      }   
+  console.log('Current text: ' + current_text)
+  if (currentGame == 'Age of Mythology' || currentGame == 'Age of Empires Online' || currentGame == 'WarCraft III') {
+    $('#score').text(current_text.replace('Bo ', 'Best of '));
+  } else {
+    $('#score').text(current_text.replace('Best of ', 'Bo '));
+  }
 }
 
 function dataChanged(newData) {
@@ -109,8 +108,8 @@ function loadStoredData() {
     font = controller.loadData('font');
     try {
       setFont(font);
-    } catch (e) {}
-  } catch (e) {}
+    } catch (e) { }
+  } catch (e) { }
 }
 
 function insertData() {
@@ -120,25 +119,33 @@ function insertData() {
   $('#team2').text(data['team2']);
   $('#score1').text(data['score1']);
   $('#score2').text(data['score2']);
-  $('#score').text('Bo '+data['sets'].length);
+  $('#score').text('Bo ' + data['sets'].length);
   udpateResultFormat();
 
+  let games_with_colors = { "WarCraft III": "WC3", "Halo Wars 2": "HW2", "Age of Mythology": "AoM", "StarCraft II": "SC2" };
+  if (games_with_colors.hasOwnProperty(currentGame)) {
+    $("div.box_left").css("background-image", `url(src/img/textures/${games_with_colors[currentGame]}/${data['player_colors'][0]}_Left.png)`);
+    $("div.box_right").css("background-image", `url(src/img/textures/${games_with_colors[currentGame]}/${data['player_colors'][1]}_Right.png)`);
+  } else {
+    $("div.box_left").css("background-image", `none`);
+    $("div.box_right").css("background-image", `none`);
+  };
 
   var hw_spacer = ''
-  if ((data['logo1'].includes('HaloWars2_') && !(data['logo1'].includes('_Scoreboard'))) || (data['logo2'].includes('HaloWars2_') && !(data['logo2'].includes('_Scoreboard')))){
-      hw_spacer = '_Scoreboard';
-      };
+  if ((data['logo1'].includes('HaloWars2_') && !(data['logo1'].includes('_Scoreboard'))) || (data['logo2'].includes('HaloWars2_') && !(data['logo2'].includes('_Scoreboard')))) {
+    hw_spacer = '_Scoreboard';
+  };
 
   if ((currentGame == 'SpellForce 3') && (data['logo1'].includes('Random'))) {
-      data['logo1'] = 'src/img/races/SpellForce3_Random.png'
-     };
+    data['logo1'] = 'src/img/races/SpellForce3_Random.png'
+  };
 
   if ((currentGame == 'SpellForce 3') && (data['logo2'].includes('Random'))) {
-      data['logo2'] = 'src/img/races/SpellForce3_Random.png'
-     };
+    data['logo2'] = 'src/img/races/SpellForce3_Random.png'
+  };
 
-  $('#logo1').css("background-image", "url('" + data['logo1'].replace('.png','') + hw_spacer + ".png')");
-  $('#logo2').css("background-image", "url('" + data['logo2'].replace('.png','') + hw_spacer + ".png')");
+  $('#logo1').css("background-image", "url('" + data['logo1'].replace('.png', '') + hw_spacer + ".png')");
+  $('#logo2').css("background-image", "url('" + data['logo2'].replace('.png', '') + hw_spacer + ".png')");
 
   if (data['winner'][0]) {
     $('#team1').removeClass('loser');
@@ -157,7 +164,7 @@ function insertData() {
     $('#team2').removeClass('loser');
   }
   insertIcons();
-  $(document).ready(function() {
+  $(document).ready(function () {
     $('#content').find(".text-fill").textfill();
   });
 }
@@ -193,20 +200,22 @@ function insertIcons() {
     $('#score' + (j + 1).toString() + '-box').empty();
   }
   try {
-    // Change their width if there are too many of icons
+
+    // Change their width if there are too many of them
     let n_icons = Object.keys(data['sets']).length;
     let width_style = "";
-    if (n_icons > 9) 
-        width_style = `; width: ${220/n_icons}px`
-      
+    if (n_icons > 9)
+      width_style = `; width: ${220 / n_icons}px`
+
     // Insert icons
     for (var i = 0; i < Object.keys(data['sets']).length; i++) {
       for (var j = 0; j < 2; j++) {
         var color = data['sets'][i][j];
+        console.log("setting icon color to: " + color);
         $('#score' + (j + 1).toString() + '-box').append('<div class="circle" id="circle-' + (j + 1).toString() + '-' + (i + 1).toString() + '" style="background-color: ' + color + width_style + '"></div>');
       }
     }
-  } catch (e) {}
+  } catch (e) { }
 }
 
 function initHide() {
@@ -261,7 +270,7 @@ function initAnimation(force = true) {
   } else if (force && !tweenInitial.isActive()) {
     outroAnimation();
   } else if (force) {
-    setTimeout(function() {
+    setTimeout(function () {
       initAnimation();
     }, 1000);
   }
@@ -295,8 +304,8 @@ function changeText(id, new_value) {
   }
   tweens[id] = new TimelineMax();
   tweens[id].to(object, 0.25, {
-      opacity: 0
-    })
+    opacity: 0
+  })
     .call(_changeText, [object, new_value])
     .to(object, 0.25, {
       opacity: 1
@@ -304,7 +313,7 @@ function changeText(id, new_value) {
 
   function _changeText(object, new_value) {
     object.text(new_value)
-    $(document).ready(function() {
+    $(document).ready(function () {
       $('#content').find(".text-fill").textfill();
     });
   }
@@ -323,9 +332,9 @@ function changeImage(id, new_value) {
   }
   tweens[id] = new TimelineMax();
   tweens[id].to(object, 0.35, {
-      scale: 0,
-      force3D: true
-    })
+    scale: 0,
+    force3D: true
+  })
     .call(_changeImage, [object, new_value])
     .to(object, 0.35, {
       scale: 1,
@@ -335,7 +344,7 @@ function changeImage(id, new_value) {
   function _changeImage(object, new_value) {
     if ((currentGame == 'SpellForce 3') && (new_value.includes('Random'))) {
       new_value = 'src/img/races/SpellForce3_Random.png'
-     };                  
+    };
     object.css("background-image", "url('" + new_value + "')");
   }
 }
@@ -355,10 +364,10 @@ function changeScoreIcon(team, set, color) {
   }
   tweens[id] = new TimelineMax();
   tweens[id].to(object, 0.15, {
-      scale: 0,
-      opacity: '0',
-      force3D: true
-    })
+    scale: 0,
+    opacity: '0',
+    force3D: true
+  })
     .call(_changeIcon, [object, color])
     .to(object, 0.15, {
       scale: 1,

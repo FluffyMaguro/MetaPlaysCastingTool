@@ -7,3 +7,4 @@ pyu-data*
 client_config.py
 *profile.js
 .vscode/*
+build/*

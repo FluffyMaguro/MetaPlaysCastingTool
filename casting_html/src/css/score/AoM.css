@@ -1,6 +1,6 @@
 @font-face {
-  font-family: 'BASKERVI';
-  src: url('../../img/AoM_BASKERVI.ttf') format('truetype');
+    font-family: 'BASKERVI';
+    src: url('../../img/AoM_BASKERVI.ttf') format('truetype');
 }
 
 :root {
@@ -11,7 +11,6 @@
     --logo: 105px;
     --font: BASKERVI;
     --bcolor: #626262;
-
 }
 
 body {
@@ -41,15 +40,14 @@ body {
 .score {
     font-size: 36px;
     line-height: 75px;
-
 }
 
 .score_middle {
-      position: absolute;
-      top: -50px;
-      width: 100%;
-      filter: drop-shadow(0px 0px 2px black);
-      font-size: 36px;
+    position: absolute;
+    top: -50px;
+    width: 100%;
+    filter: drop-shadow(0px 0px 2px black);
+    font-size: 36px;
 }
 
 .score_left {
@@ -77,7 +75,8 @@ div.box_right {
     height: 100%;
     width: var(--side);
     right: 0px;
-
+    background-repeat: no-repeat;
+    background-position-x: left 0px;
 }
 
 div.box_left {
@@ -85,6 +84,8 @@ div.box_left {
     height: 100%;
     width: var(--side);
     left: 0px;
+    background-repeat: no-repeat;
+    background-position-x: left 35px;
 }
 
 div.upper-text-right {
@@ -92,32 +93,31 @@ div.upper-text-right {
     width: 56%;
     height: 20%;
     top: 9px;
-    left: 38px; 
+    left: 38px;
     line-height: 60px;
     filter: drop-shadow(0px 0px 1px var(--bcolor));
 }
 
-
 div.upper-text-left {
-  position: absolute;
-  width: 56%;
-  height: 20%;
-  top: 9px;
-  right: 38px;
-  line-height: 60px;
-  text-align: center;
-  filter: drop-shadow(0px 0px 1px var(--bcolor));
+    position: absolute;
+    width: 56%;
+    height: 20%;
+    top: 9px;
+    right: 38px;
+    line-height: 60px;
+    text-align: center;
+    filter: drop-shadow(0px 0px 1px var(--bcolor));
 }
 
 #team2, #team1 {
-     position: relative;
-     top: -10px;                 
+    position: relative;
+    top: -10px;
 }
 
 div.mapscore-right {
     position: absolute;
-    width: calc(var(--side) - var(--logo) - 8px);
-    left: 15px;
+    width: calc(var(--side) - var(--logo) - 160px);
+    left: 80px;
     top: -85px;
     height: 100%;
     display: flex;
@@ -127,9 +127,9 @@ div.mapscore-right {
 
 div.mapscore-left {
     position: absolute;
-    width: calc(var(--side) - var(--logo) - 8px);
+    width: calc(var(--side) - var(--logo) - 160px);
     top: -85px;
-    right: 15px;
+    right: 80px;
     height: 100%;
     display: flex;
     align-items: center;

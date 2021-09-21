@@ -27,7 +27,7 @@ function playSound(audio) {
       //not playing
       audio.play();
     }
-  } catch (e) {}
+  } catch (e) { }
 }
 
 function Connect() {
@@ -35,12 +35,12 @@ function Connect() {
   port = parseInt("0x".concat(profile), 16);
   socket = new WebSocket("ws://127.0.0.1:".concat(port, "/", path));
 
-  socket.onopen = function() {
+  socket.onopen = function () {
     console.log("Connected!");
     isopen = true;
   }
 
-  socket.onmessage = function(message) {
+  socket.onmessage = function (message) {
     var jsonObject = JSON.parse(message.data);
     var intro = document.getElementById("intro");
     if (jsonObject.data.hasOwnProperty('font')) {
@@ -52,25 +52,32 @@ function Connect() {
         try {
           var tts = new Audio(jsonObject.data.tts);
           tts.volume = jsonObject.data.tts_volume / 20.0;
-        } catch (e) {}
+        } catch (e) { }
         socket.send(jsonObject.state);
         tween.clear();
         $(".race").prop('id', jsonObject.data.race);
-        if(jsonObject.data.color == 'red'){
-          $(".box").addClass('red');
-          $(".box").removeClass('blue');
-        }else{
-          $(".box").addClass('blue');
-          $(".box").removeClass('red');
-        }
-        $(".logo").css("display", jsonObject.data.display)
 
-        if ((jsonObject.game == 'SpellForce 3') && jsonObject.data.logo.includes('Random')) {
-            jsonObject.data.logo = 'src/img/races/SpellForce3_Random.png';
-            console.log('SF3');
+        // Custom colors for some games
+        let games_with_colors = { "WarCraft III": "WC3", "Halo Wars 2": "HW2", "Age of Mythology": "AoM", "StarCraft II": "SC2" };
+        if (games_with_colors.hasOwnProperty(jsonObject.game))
+          $(".box").css("background-image", `url(src/img/textures/${games_with_colors[jsonObject.game]}/${jsonObject.data['intro_color']}.png)`);
+        else {
+          if (jsonObject.data.color == 'red') {
+            $(".box").addClass('red');
+            $(".box").removeClass('blue');
+          } else {
+            $(".box").addClass('blue');
+            $(".box").removeClass('red');
           }
-        console.log('LOGO: '+jsonObject.data.logo);
-        console.log('GAME: '+jsonObject.game);
+        }
+
+        $(".logo").css("display", jsonObject.data.display)
+        if ((jsonObject.game == 'SpellForce 3') && jsonObject.data.logo.includes('Random')) {
+          jsonObject.data.logo = 'src/img/races/SpellForce3_Random.png';
+          console.log('SF3');
+        }
+        console.log('LOGO: ' + jsonObject.data.logo);
+        console.log('GAME: ' + jsonObject.game);
 
         $(".logo").css("background-image", "url(" + jsonObject.data.logo + ")");
         $('.name span').html(jsonObject.data.name);
@@ -117,10 +124,10 @@ function Connect() {
             });
         } else if (animation == "slide") {
           tween.to(intro, 0, {
-              opacity: 0,
-              left: offset + "px",
-              scaleX: 0
-            })
+            opacity: 0,
+            left: offset + "px",
+            scaleX: 0
+          })
             .to(intro, 0.1, {
               opacity: 1
             })
@@ -189,11 +196,11 @@ function Connect() {
     }
   }
 
-  socket.onclose = function(e) {
+  socket.onclose = function (e) {
     console.log("Connection closed.");
     socket = null;
     isopen = false
-    setTimeout(function() {
+    setTimeout(function () {
       Connect();
     }, reconnectIntervalMs);
   }

@@ -63,7 +63,7 @@ class matchData(QObject):
             
     def add_defaults(self, override=False):
         if "player_colors" not in self.__data or override:
-            self.__data["player_colors"] = ["#0164E3", "#EB0000"]
+            self.__data["player_colors"] = ["Blue", "Red"]
 
     def writeJsonFile(self):
         """Write json data to file."""
@@ -99,7 +99,7 @@ class matchData(QObject):
         self.__data['teams'].append({'name': 'TBD', 'tag': None})
         self.__data['sets'] = []
         self.__data['players'] = [[], []]
-        self.__data['player_colors'] = ["#0164E3", "#EB0000"]
+        self.__data['player_colors'] = ["Blue", "Red"]
 
     def swapTeams(self):
         module_logger.info("Swapping teams")

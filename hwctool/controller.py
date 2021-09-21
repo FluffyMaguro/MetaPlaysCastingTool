@@ -158,7 +158,7 @@ class MainController:
 
             self.view.updatePlayerCompleters()
             self.updatePlayerIntros()
-            self.view.update_button_colors()
+            self.view.update_button_colors(set_values=True)
 
         except Exception as e:
             module_logger.exception("message")
@@ -391,6 +391,7 @@ class MainController:
             "Intros", "display_time")
         data['animation'] = hwctool.settings.config.parser.get(
             "Intros", "animation") .strip().lower()
+        data['intro_color'] =  self.matchData.get_player_colors()[idx]
         if hwctool.settings.config.parser.getboolean(
                 "Style", "use_custom_font"):
             data['font'] = hwctool.settings.config.parser.get(

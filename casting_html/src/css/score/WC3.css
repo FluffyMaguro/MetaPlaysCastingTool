@@ -1,8 +1,8 @@
 @font-face {
-  font-family: 'LifeCraft';
-  src: url('../../img/WC3_font.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
+    font-family: 'LifeCraft';
+    src: url('../../img/WC3_font.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
 }
 
 :root {
@@ -45,18 +45,18 @@ body {
 }
 
 .score_middle {
-      position: absolute;
-      top: 2px;
-      width: 100%;
-      filter: drop-shadow(0px 0px 2px black);
-      color: #FDDC00;
-      font-size: 32px;
+    position: absolute;
+    top: 2px;
+    width: 100%;
+    filter: drop-shadow(0px 0px 2px black);
+    color: #FDDC00;
+    font-size: 32px;
 }
 
 .score_left {
     position: absolute;
     top: -45px;
-    left: 0px;
+    left: 7px;
     width: 50px;
     height: 100%;
     text-align: center;
@@ -66,7 +66,7 @@ body {
 .score_right {
     position: absolute;
     top: -45px;
-    right: -2px;
+    right: 9px;
     width: 50px;
     height: 100%;
     text-align: center;
@@ -76,16 +76,21 @@ body {
 div.box_right {
     position: absolute;
     height: 100%;
-    width: var(--side);
+    width: calc(var(--side) + 100px);
     right: 0px;
-
+    background-repeat: no-repeat;
+    background-position-x: left 30px;
+    overflow: visible;
 }
 
 div.box_left {
     position: absolute;
     height: 100%;
-    width: var(--side);
+    width: calc(var(--side) + 100px);
     left: 0px;
+    background-repeat: no-repeat;
+    background-position-x: left 30px;
+    overflow: visible;
 }
 
 div.upper-text-right {
@@ -110,7 +115,6 @@ div.upper-text-left {
     left: 85px;
     text-align: center;
     filter: drop-shadow(0px 0px 1px var(--bcolor));
-
 }
 
 #team2, #team1 {
@@ -119,8 +123,8 @@ div.upper-text-left {
 
 div.mapscore-right {
     position: absolute;
-    width: calc(var(--side) - var(--logo) - 8px);
-    left: 20px;
+    width: calc(var(--side) - var(--logo) - 80px);
+    left: 130px;
     top: -72px;
     height: 100%;
     display: flex;
@@ -130,9 +134,9 @@ div.mapscore-right {
 
 div.mapscore-left {
     position: absolute;
-    width: calc(var(--side) - var(--logo) - 8px);
+    width: calc(var(--side) - var(--logo) - 80px);
     top: -72px;
-    right: 20px;
+    right: 140px;
     height: 100%;
     display: flex;
     align-items: center;
@@ -149,12 +153,6 @@ div.circle {
     border-radius: 4px 4px 4px 4px;
     border: 1px solid #333;
     box-shadow: 0px 0px 2px #2d6199;
-
-    
-/*    flex-shrink: 1;
-    background: url(../../img/textures/WC_CircleBG.png);
-    background-position: center 0%;
-    background-repeat: no-repeat;*/
 }
 
 div.lower-text {
@@ -173,6 +171,10 @@ div.logo {
     filter: drop-shadow(0 2px 4px rgba(255, 255, 255, .4)) drop-shadow(0 8px 16px rgba(255, 255, 255, .1));
     width: 107px;
     height: 92px;
+}
+
+#logo2 {
+    right: 55px;
 }
 
 div.box_veryleft {

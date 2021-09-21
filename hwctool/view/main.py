@@ -140,13 +140,13 @@ class MainWindow(QMainWindow):
         hwctool.settings.races = hwctool.settings.game_races[title] #update races
         hwctool.settings.current_game = title #update current game
         
-        #uncheck, check
+        # Uncheck, check
         for item in self.game_list.keys():
              self.game_list[item].setChecked(False)
 
         self.game_list[title].setChecked(True)
 
-        #updates dropdown menu for players
+        # Updates dropdown menu for players
         max_no_sets = hwctool.settings.max_no_sets 
         for player_idx in range(max_no_sets):
             for team_idx in range(2):
@@ -155,13 +155,28 @@ class MainWindow(QMainWindow):
                     self.cb_race[team_idx][player_idx].addItem(race)
 
 
-        #update styles
-        if show_popup:
-            self.openStyleDialog()
+        # Update styles
+        game_trans = {"StarCraft II": "SC2",
+                     "WarCraft III": "WC3",
+                     "Age of Empires IV": "AoE4",
+                     "Age of Empires Online": "AoEO",
+                     "Age of Mythology": "AoM",
+                     "SpellForce 3": "SF3",
+                     "Halo Wars 2": "HW2"}
 
-        #save game
+        # Create style window if necessary
+        if not hasattr(self.mysubwindows, "styles"):
+            self.openStyleDialog()
+            self.mysubwindows['styles'].hide()
+
+        self.mysubwindows['styles'].qb_introStyle.setCurrentText(game_trans.get(title, "AoEO"))
+        self.mysubwindows['styles'].qb_scoreStyle.setCurrentText(game_trans.get(title, "AoEO"))
+
+        # Save game
         hwctool.settings.config.parser.set("Game", "name", title)
-        
+
+        self.update_color_picker_availability()
+
 
     def createMenuBar(self):
         """Create the menu bar."""
@@ -610,20 +625,22 @@ class MainWindow(QMainWindow):
             label.setFixedWidth(self.raceWidth)
             container.addWidget(label, 0, 5, 1, 1)
 
-            # Color picker
-            self.p1_color_button = QPushButton()
-            self.p1_color_button.setText("Player color")
-            self.p1_color_button.setFixedWidth(self.raceWidth)
-            self.p1_color_button.clicked.connect(lambda: self.openColorDialog(1))
-            self.p1_color_button.setStyleSheet(f'background-color: {self.controller.matchData.get_player_colors()[0]}; color: black')
-            container.addWidget(self.p1_color_button, 1, 2, 1, 1)
+            colors = ("Blue", "Green", "Red", "Orange", "Pink", "Teal", "Purple", "White", "Yellow")
 
-            self.p2_color_button = QPushButton()
-            self.p2_color_button.setText("Player color")
-            self.p2_color_button.setFixedWidth(self.raceWidth)
-            self.p2_color_button.clicked.connect(lambda: self.openColorDialog(2))
-            self.p2_color_button.setStyleSheet(f'background-color: {self.controller.matchData.get_player_colors()[1]}; color: black')
-            container.addWidget(self.p2_color_button, 1, 4, 1, 1)
+            # Color picker
+            self.p1_color_widget = QComboBox()
+            self.p1_color_widget.setFixedWidth(self.raceWidth)
+            for color in colors:
+                self.p1_color_widget.addItem(color)
+            self.p1_color_widget.currentIndexChanged.connect(lambda: self.player_color_changed(1))
+            container.addWidget(self.p1_color_widget, 1, 2, 1, 1)
+
+            self.p2_color_widget = QComboBox()
+            self.p2_color_widget.setFixedWidth(self.raceWidth)
+            for color in colors:
+                self.p2_color_widget.addItem(color)
+            self.p2_color_widget.currentIndexChanged.connect(lambda: self.player_color_changed(2))
+            container.addWidget(self.p2_color_widget, 1, 4, 1, 1)
 
             layout2.addLayout(container)
 
@@ -693,19 +710,35 @@ class MainWindow(QMainWindow):
         except Exception as e:
             module_logger.exception("message")
 
-    def openColorDialog(self, player):
-        """ Opens color dialog for players"""
-        color = QColorDialog.getColor()
-        if color.isValid():
-            self.controller.matchData.set_player_color(color.name(), player - 1)
+    def update_color_picker_availability(self):
+        """ Disable/enable color picker buttons for games that work with it"""
+        if hwctool.settings.config.parser.get("Game", "name") in {"WarCraft III", "Halo Wars 2", "Age of Mythology", "StarCraft II"}:
+            self.p1_color_widget.setDisabled(False)
+            self.p2_color_widget.setDisabled(False)
             self.update_button_colors()
-            self.controller.matchMetaDataChanged()
+        else:
+            self.p1_color_widget.setDisabled(True)
+            self.p2_color_widget.setDisabled(True)
+            self.p1_color_widget.setStyleSheet(f'QComboBox {{ background-color: #ccc; color: #999 }}')
+            self.p2_color_widget.setStyleSheet(f'QComboBox {{ background-color: #ccc; color: #999 }}')
 
-    def update_button_colors(self):
+    def player_color_changed(self, player):
+        """ Player color changed"""
+        # color = QColorDialog.getColor()
+        color = self.p1_color_widget.currentText() if player == 1 else self.p2_color_widget.currentText()
+        self.controller.matchData.set_player_color(color, player - 1)
+        self.update_button_colors()
+        self.controller.matchMetaDataChanged()
+
+    def update_button_colors(self, set_values=False):
         """ Updates colors for player buttons"""
-        self.p1_color_button.setStyleSheet(f'background-color: {self.controller.matchData.get_player_colors()[0]}; color: black')
-        self.p2_color_button.setStyleSheet(f'background-color: {self.controller.matchData.get_player_colors()[1]}; color: black')
-
+        p1color, p2color = self.controller.matchData.get_player_colors()
+        self.p1_color_widget.setStyleSheet(f'QComboBox {{ background-color: {p1color}; color: black }}')
+        self.p2_color_widget.setStyleSheet(f'QComboBox {{ background-color: {p2color}; color: black }}')
+        if set_values:
+            self.p1_color_widget.setCurrentText(p1color)
+            self.p2_color_widget.setCurrentText(p2color)
+        
     def createHorizontalGroupBox(self):
         """Create horizontal group box for tasks."""
         try:
