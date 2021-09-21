@@ -169,7 +169,7 @@ def idx2race(idx):
 
 game_races = {"StarCraft II":("Random", "Zerg", "Terran", "Protoss"),
               "WarCraft III":("Random", "Human", "Orc", "Night Elf", "Undead"),
-              "Age of Empires IV":("Random","English", "Mongols", "C", "D", "E"),
+              "Age of Empires IV":("Random", "Abbasid Dynasty", "Chinese", "Delphi Sultanate", "English", "French", "Holy Roman Empire", "Mongols", "Rus"),
               "Age of Empires Online":("Random","Greeks", "Egyptians", "Celts", "Persians", "Babylonians", "Norse", "Romans"),
               "Age of Mythology":("Random","Zeus", "Poseidon", "Hades", "Isis", "Ra", "Set", "Odin", "Thor", "Loki", "Oranos", "Kronos", "Gaia", "Fu Xi", "Nu Wa", "Shennong"),
               "SpellForce 3" :("Random","Humans","Elves","Orcs","Dwarves","Dark Elves","Trolls"),

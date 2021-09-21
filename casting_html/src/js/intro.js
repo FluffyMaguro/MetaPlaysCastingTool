@@ -58,10 +58,11 @@ function Connect() {
         $(".race").prop('id', jsonObject.data.race);
 
         // Custom colors for some games
-        let games_with_colors = { "WarCraft III": "WC3", "Halo Wars 2": "HW2", "Age of Mythology": "AoM", "StarCraft II": "SC2" };
-        if (games_with_colors.hasOwnProperty(jsonObject.game))
-          $(".box").css("background-image", `url(src/img/textures/${games_with_colors[jsonObject.game]}/${jsonObject.data['intro_color']}.png)`);
-        else {
+        let games_with_colors = { "WarCraft III": "WC3", "Halo Wars 2": "HW2", "Age of Mythology": "AoM", "StarCraft II": "SC2", "SpellForce 3": "SF3" };
+        if (games_with_colors.hasOwnProperty(jsonObject.game)) {
+          $(".box").css("background-image", `url(src/img/textures/${games_with_colors[jsonObject.game]}/${jsonObject.data.intro_color}.png)`);
+          $(".name, .name>span").css("color", jsonObject.data.intro_color);
+        } else {
           if (jsonObject.data.color == 'red') {
             $(".box").addClass('red');
             $(".box").removeClass('blue');

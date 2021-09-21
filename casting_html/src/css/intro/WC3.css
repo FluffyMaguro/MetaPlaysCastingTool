@@ -85,14 +85,6 @@ div.team {
   text-align: center;
 }
 
-div.box.red div.name {
-  color: white;
-}
-
-div.box.blue div.name {
-  color: white;
-}
-
 .text-item {
   font-weight: bold;
   --outline-size: 3px;

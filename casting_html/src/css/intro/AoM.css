@@ -74,7 +74,6 @@ div.name span {
   left: 50%;
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
-  color: white;
 }
 
 div.team {
@@ -86,14 +85,6 @@ div.team {
   height: calc(14% - 7px);
   text-align: center;
   font-weight: bold;
-}
-
-div.box.red div.name {
-  color: blue;
-}
-
-div.box.blue div.name {
-  color: red;
 }
 
 .text-item {

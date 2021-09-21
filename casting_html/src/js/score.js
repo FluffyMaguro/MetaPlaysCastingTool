@@ -122,7 +122,7 @@ function insertData() {
   $('#score').text('Bo ' + data['sets'].length);
   udpateResultFormat();
 
-  let games_with_colors = { "WarCraft III": "WC3", "Halo Wars 2": "HW2", "Age of Mythology": "AoM", "StarCraft II": "SC2" };
+  let games_with_colors = { "WarCraft III": "WC3", "Halo Wars 2": "HW2", "Age of Mythology": "AoM", "StarCraft II": "SC2", "SpellForce 3": "SF3" };
   if (games_with_colors.hasOwnProperty(currentGame)) {
     $("div.box_left").css("background-image", `url(src/img/textures/${games_with_colors[currentGame]}/${data['player_colors'][0]}_Left.png)`);
     $("div.box_right").css("background-image", `url(src/img/textures/${games_with_colors[currentGame]}/${data['player_colors'][1]}_Right.png)`);
