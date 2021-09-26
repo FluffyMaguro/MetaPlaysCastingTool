@@ -71,7 +71,6 @@ body {
   filter: drop-shadow(0px 0px 2px black);
 }
 
-
 div.box_right {
   position: absolute;
   height: 100%;
@@ -87,7 +86,7 @@ div.box_left {
 }
 
 div.upper-text-right {
-/*  position: absolute;
+  /*  position: absolute;
   font-size: 40px;
   line-height: 55px;
   height: 70%;
@@ -102,7 +101,7 @@ div.upper-text-right {
 }
 
 div.upper-text-left {
-/*  position: absolute;
+  /*  position: absolute;
   font-size: 40px;
   line-height: 55px;
   height: 70%;
@@ -136,7 +135,7 @@ div.mapscore-left {
   align-items: center;
   justify-content: center;
 }
-/* Not sure what is this */
+
 div.circle {
   background: #f00;
   width: 28px;
@@ -157,11 +156,9 @@ div.lower-text {
   bottom: 0%;
   /*border-top: 1px solid var(--bcolor);*/
   /*background-color: rgba(64, 150, 242, 0.1);*/
-
 }
 
 div.logo {
-
   /* background-color: white; */
   display: none;
 }

@@ -7,6 +7,7 @@ from uuid import uuid4
 
 import keyboard
 import websockets
+from websockets.legacy.server import serve as websockets_serve
 from PyQt5.QtCore import QThread, pyqtSignal
 
 import hwctool.settings
@@ -57,7 +58,7 @@ class WebsocketThread(QThread):
         module_logger.info(
             'Starting Websocket Server with port {}.'.format(port))
         # Create the server.
-        start_server = websockets.serve(self.handler,
+        start_server = websockets_serve(self.handler,
                                         host='localhost',
                                         port=port,
                                         max_queue=16,

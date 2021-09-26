@@ -1,13 +1,13 @@
 @font-face {
-  font-family: 'AshleyCrawford';
-  src: url('../../img/ashley_crawford_cg.ttf') format('truetype');
+  font-family: 'BASKERVI';
+  src: url('../../img/AoM_BASKERVI.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
 
 :root {
-  --width: 1000px;
-  --height: 390px;
+  --width: 479px;
+  --height: 306px;
   --border-size: 2px;
   --border-color: black;
   --border-radius: 30px;
@@ -15,7 +15,7 @@
 
 body {
   overflow: hidden;
-  font-family: AshleyCrawford, Sans-Serif;
+  font-family: BASKERVI;
 }
 
 div.box {
@@ -29,14 +29,6 @@ div.box {
   background-position: center 55%;
 }
 
-div.box.red {
-  background-image: url("../../img/textures/AoEO_Blue.png");
-}
-
-div.box.blue {
-  background-image: url("../../img/textures/AoEO_Red.png");
-}
-
 div.race {
   position: absolute;
   visibility: hidden;
@@ -47,11 +39,11 @@ div.logo {
   background-size: contain;
   background-position: left bottom;
   background-repeat: no-repeat;
-  left: 45px;
-  bottom: 76px;
-  height: 250px;
-  width: 250px;
-  overflow: hidden;
+  top: 41px;
+  left: 32px;
+  height: 55px;
+  width: 380px;
+  overflow: visible;
   filter: drop-shadow(2px 2px 2px black);
 }
 
@@ -61,10 +53,10 @@ div.label {
 
 div.name {
   position: absolute;
-  top: 15%;
-  left: 33.5%;
-  width: 59%;
-  height: 135px;
+  top: 40%;
+  left: 10.5%;
+  width: 76%;
+  height: 132px;
   text-align: center;
 }
 
@@ -85,14 +77,7 @@ div.team {
   height: calc(20% - 7px);
   text-align: center;
   font-weight: bold;
-}
-
-div.box.red div.name {
-  color: blue;
-}
-
-div.box.blue div.name {
-  color: red;
+  display: none;
 }
 
 .text-item {

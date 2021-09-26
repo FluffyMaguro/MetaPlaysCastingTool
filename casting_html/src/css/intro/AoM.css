@@ -29,14 +29,6 @@ div.box {
   background-repeat: no-repeat;
 }
 
-div.box.red {
-  background-image: url("../../img/textures/AoM_Blue.png");
-}
-
-div.box.blue {
-  background-image: url("../../img/textures/AoM_Red.png");
-}
-
 div.race {
   position: absolute;
   visibility: hidden;

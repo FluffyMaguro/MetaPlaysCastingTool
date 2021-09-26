@@ -1,6 +1,6 @@
 @font-face {
-  font-family: 'AshleyCrawford';
-  src: url('../../img/ashley_crawford_cg.ttf') format('truetype');
+  font-family: 'BASKERVI';
+  src: url('../../img/AoM_BASKERVI.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
@@ -11,7 +11,7 @@
   --middle: 248px;
   --side: calc((var(--width) - var(--middle)) / 2);
   --logo: 105px;
-  --font: AshleyCrawford;
+  --font: BASKERVI;
   --bcolor: #626262;
 }
 
@@ -24,7 +24,7 @@ body {
   width: var(--width);
   height: var(--height);
   display: inline-block;
-  background: url(../../img/textures/AoEO_Score.png);
+  background: url(../../img/textures/AoE4/Scoreboard.png);
   background-position: center 0%;
   background-repeat: no-repeat;
   top: -8px;
@@ -32,7 +32,7 @@ body {
 
 .box_middle {
   position: absolute;
-  top: 43px;
+  top: 40px;
   left: var(--side);
   width: var(--middle);
   height: 100%;
@@ -40,21 +40,23 @@ body {
 }
 
 .score {
-  font-size: 45px;
+  font-size: 36px;
   line-height: 75px;
+  text-transform: uppercase;
 }
 
 .score_middle {
   position: absolute;
-  top: -46px;
+  top: -48px;
   width: 100%;
   filter: drop-shadow(0px 0px 2px black);
+  color: #F0E8CF
 }
 
 .score_left {
   position: absolute;
-  top: 18px;
-  left: 0px;
+  top: -45px;
+  left: -85px;
   width: 50px;
   height: 100%;
   text-align: center;
@@ -63,14 +65,13 @@ body {
 
 .score_right {
   position: absolute;
-  top: 18px;
-  right: -3px;
+  top: -45px;
+  right: -85px;
   width: 50px;
   height: 100%;
   text-align: center;
   filter: drop-shadow(0px 0px 2px black);
 }
-
 
 div.box_right {
   position: absolute;
@@ -87,7 +88,7 @@ div.box_left {
 }
 
 div.upper-text-right {
-/*  position: absolute;
+  /*  position: absolute;
   font-size: 40px;
   line-height: 55px;
   height: 70%;
@@ -102,7 +103,7 @@ div.upper-text-right {
 }
 
 div.upper-text-left {
-/*  position: absolute;
+  /*  position: absolute;
   font-size: 40px;
   line-height: 55px;
   height: 70%;
@@ -117,9 +118,9 @@ div.upper-text-left {
 
 div.mapscore-right {
   position: absolute;
-  width: calc(var(--side) - var(--logo) - 8px);
-  left: 26px;
-  top: -16px;
+  width: 190px;
+  left: -107px;
+  top: -88px;
   height: 100%;
   display: flex;
   align-items: center;
@@ -128,15 +129,15 @@ div.mapscore-right {
 
 div.mapscore-left {
   position: absolute;
-  width: calc(var(--side) - var(--logo) - 8px);
-  top: -16px;
-  right: 26px;
+  width: 190px;
+  top: -88px;
+  right: -107px;
   height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-/* Not sure what is this */
+
 div.circle {
   background: #f00;
   width: 28px;
@@ -157,11 +158,9 @@ div.lower-text {
   bottom: 0%;
   /*border-top: 1px solid var(--bcolor);*/
   /*background-color: rgba(64, 150, 242, 0.1);*/
-
 }
 
 div.logo {
-
   /* background-color: white; */
   display: none;
 }

@@ -11,6 +11,15 @@ var tweenInitial = new TimelineMax();
 var tweens = {};
 var controller = new Controller(profile, 'score');
 var currentGame = 'WarCraftIII';
+var game_trans = {
+  "StarCraft II": "SC2",
+  "WarCraft III": "WC3",
+  "Age of Empires IV": "AoE4",
+  "Age of Empires Online": "AoEO",
+  "Age of Mythology": "AoM",
+  "SpellForce 3": "SF3",
+  "Halo Wars 2": "HW2"
+};
 
 init();
 
@@ -71,16 +80,21 @@ function connectWebsocket() {
 }
 
 function setCurrentGame(data) {
-  if (data == null) { return };
-  currentGame = data.toString();
+  if (data == null) return;
+  let newgame = data.toString();
+  if (newgame == currentGame) return;
+  currentGame = newgame;
   console.log('Setting current game to: ' + currentGame);
   udpateResultFormat();
+  if (game_trans.hasOwnProperty(currentGame))
+    controller.setStyle(`src/css/score/${game_trans[currentGame]}.css`);
 }
+
 
 function udpateResultFormat() {
   var current_text = $('#score').text();
   console.log('Current text: ' + current_text)
-  if (currentGame == 'Age of Mythology' || currentGame == 'Age of Empires Online' || currentGame == 'WarCraft III') {
+  if (currentGame == 'Age of Mythology' || currentGame == 'Age of Empires Online' || currentGame == 'WarCraft III' || currentGame == 'Age of Empires IV') {
     $('#score').text(current_text.replace('Bo ', 'Best of '));
   } else {
     $('#score').text(current_text.replace('Best of ', 'Bo '));
@@ -121,6 +135,15 @@ function insertData() {
   $('#score2').text(data['score2']);
   $('#score').text('Bo ' + data['sets'].length);
   udpateResultFormat();
+
+  // AoE4 change score 
+  if (currentGame == "Age of Empires IV") {
+    $(".score_left").css("color", data.player_colors[0]);
+    $(".score_right").css("color", data.player_colors[1]);
+  } else {
+    $(".score_left").css("color", "white");
+    $(".score_right").css("color", "white");
+  }
 
   let games_with_colors = { "WarCraft III": "WC3", "Halo Wars 2": "HW2", "Age of Mythology": "AoM", "StarCraft II": "SC2", "SpellForce 3": "SF3" };
   if (games_with_colors.hasOwnProperty(currentGame)) {
