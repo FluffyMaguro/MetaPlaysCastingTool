@@ -21,14 +21,6 @@ div.box {
   background-repeat: no-repeat;
 }
 
-div.box.red {
-  background-image: url("../../img/textures/HW2_Blue.png");
-}
-
-div.box.blue {
-  background-image: url("../../img/textures/HW2_Red.png");
-}
-
 div.race {
   position: absolute;
   visibility: hidden;

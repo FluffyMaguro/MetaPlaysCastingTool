@@ -28,14 +28,6 @@ div.box {
   background-repeat: no-repeat;
 }
 
-div.box.red {
-  background-image: url("../../img/textures/WC3_Blue.png");
-}
-
-div.box.blue {
-  background-image: url("../../img/textures/WC3_Red.png");
-}
-
 div.race {
   position: absolute;
   visibility: hidden;
@@ -81,7 +73,7 @@ div.team {
   top: 63.5%;
   left: 38%;
   width: 50%;
-  height: calc(12% - 7px);
+  height: 11%;
   text-align: center;
 }
 

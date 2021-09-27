@@ -87,14 +87,6 @@ div.team {
   font-weight: bold;
 }
 
-div.box.red div.name {
-  color: blue;
-}
-
-div.box.blue div.name {
-  color: red;
-}
-
 .text-item {
   font-weight: bold;
   --outline-size: 3px;
