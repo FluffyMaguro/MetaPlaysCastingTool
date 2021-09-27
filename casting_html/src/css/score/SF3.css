@@ -56,7 +56,7 @@ body {
 .score_left {
     position: absolute;
     top: -45px;
-    left: 8px;
+    left: 6px;
     width: 50px;
     height: 100%;
     text-align: center;
@@ -79,17 +79,16 @@ div.box_right {
     width: 630px;
     right: 0px;
     background-repeat: no-repeat;
-    background-position-x: right 136px;
+    background-position: -7% 0%;
 }
 
 div.box_left {
     position: absolute;
     height: 100%;
     width: 630px;
-    ;
     left: 0px;
     background-repeat: no-repeat;
-    background-position-x: left 138px;
+    background-position: 106% 0%;
     overflow: visible;
 }
 
@@ -187,6 +186,10 @@ div.box_veryright {
     right: 303px;
     top: 5px;
     box-sizing: border-box;
+}
+
+#logo1 {
+    margin-left: -3px
 }
 
 .text-item {
