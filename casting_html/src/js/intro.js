@@ -80,20 +80,9 @@ function Connect() {
         // Update current game
         update_current_game(jsonObject.game);
 
-        // Custom colors for some games
-        let games_with_colors = { "WarCraft III": "WC3", "Halo Wars 2": "HW2", "Age of Mythology": "AoM", "StarCraft II": "SC2", "SpellForce 3": "SF3", "Age of Empires IV": "AoE4" };
-        if (games_with_colors.hasOwnProperty(jsonObject.game)) {
-          $(".box").css("background-image", `url(src/img/textures/${games_with_colors[jsonObject.game]}/${jsonObject.data.intro_color}.png)`);
-          $(".name, .name>span").css("color", jsonObject.data.intro_color);
-        } else {
-          if (jsonObject.data.color == 'red') {
-            $(".box").addClass('red');
-            $(".box").removeClass('blue');
-          } else {
-            $(".box").addClass('blue');
-            $(".box").removeClass('red');
-          }
-        }
+        // Custom colors
+        $(".box").css("background-image", `url(src/img/textures/${game_trans_intro[jsonObject.game]}/${jsonObject.data.intro_color}.png)`);
+        $(".name, .name>span").css("color", jsonObject.data.intro_color);
 
         $(".logo").css("display", jsonObject.data.display)
         if ((jsonObject.game == 'SpellForce 3') && jsonObject.data.logo.includes('Random')) {

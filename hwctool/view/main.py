@@ -712,7 +712,7 @@ class MainWindow(QMainWindow):
 
     def update_color_picker_availability(self):
         """ Disable/enable color picker buttons for games that work with it"""
-        if hwctool.settings.config.parser.get("Game", "name") in {"WarCraft III", "Halo Wars 2", "Age of Mythology", "StarCraft II", "SpellForce 3", "Age of Empires IV"}:
+        if True:
             self.p1_color_widget.setDisabled(False)
             self.p2_color_widget.setDisabled(False)
             self.update_button_colors()
