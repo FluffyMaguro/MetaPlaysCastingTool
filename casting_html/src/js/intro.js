@@ -13,8 +13,28 @@ myAudio2.volume = volume;
 var myAudio3 = new Audio("src/sound/fanfare.wav");
 myAudio3.volume = volume;
 var controller = new Controller(profile, 'intro');
+var currentGame_intro = "";
+var game_trans_intro = {
+  "StarCraft II": "SC2",
+  "WarCraft III": "WC3",
+  "Age of Empires IV": "AoE4",
+  "Age of Empires Online": "AoEO",
+  "Age of Mythology": "AoM",
+  "SpellForce 3": "SF3",
+  "Halo Wars 2": "HW2"
+};
+
 
 init();
+
+// Update current game and change css
+function update_current_game(game) {
+  if (currentGame_intro == game) return;
+  console.log(`Updating current game: ${currentGame_intro} → ${game}`);
+  currentGame_intro = game;
+  if (game_trans_intro.hasOwnProperty(currentGame_intro))
+    controller.setStyle(`src/css/intro/${game_trans_intro[currentGame_intro]}.css`);
+}
 
 function playSound(audio) {
   try {
@@ -56,6 +76,9 @@ function Connect() {
         socket.send(jsonObject.state);
         tween.clear();
         $(".race").prop('id', jsonObject.data.race);
+
+        // Update current game
+        update_current_game(jsonObject.game);
 
         // Custom colors for some games
         let games_with_colors = { "WarCraft III": "WC3", "Halo Wars 2": "HW2", "Age of Mythology": "AoM", "StarCraft II": "SC2", "SpellForce 3": "SF3", "Age of Empires IV": "AoE4" };
