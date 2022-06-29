@@ -481,8 +481,11 @@ class matchData(QObject):
                         was_decided = self.isDecided()
                         self.__data['sets'][set_idx]['score'] = score
                         outcome_changed = self.isDecided() != was_decided
-                        if outcome_changed:
-                            self.__emitSignal('outcome')
+                        try:
+                            if outcome_changed:
+                                self.__emitSignal('outcome')
+                        except Exception:
+                            pass
                         self.__emitSignal('data', 'score',
                                           {'set_idx': set_idx,
                                            'value': score})
