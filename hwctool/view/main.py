@@ -162,7 +162,12 @@ class MainWindow(QMainWindow):
                      "Age of Empires Online": "AoEO",
                      "Age of Mythology": "AoM",
                      "SpellForce 3": "SF3",
+<<<<<<< HEAD
                      "Halo Wars 2": "HW2"}
+=======
+                     "Halo Wars 2": "HW2",
+                     "Company of Heroes 3": "CoH3"}
+>>>>>>> b5b775d (initial commit)
 
         # Create style window if necessary
         if not hasattr(self.mysubwindows, "styles"):
@@ -283,7 +288,11 @@ class MainWindow(QMainWindow):
             #Choose the game
             gameMenu = menubar.addMenu(_('Game'))
 
+<<<<<<< HEAD
             icon_dict = {'StarCraft II':'SC2.png','WarCraft III':'WC3.png','Age of Empires IV':'AOEIV.png','Age of Empires Online':'AOEO.png','Age of Mythology':'AOM.png','Halo Wars 2':'HW.png','SpellForce 3':'SF3.png'}
+=======
+            icon_dict = {'StarCraft II':'SC2.png','WarCraft III':'WC3.png','Age of Empires IV':'AOEIV.png','Age of Empires Online':'AOEO.png','Age of Mythology':'AOM.png','Halo Wars 2':'HW.png','SpellForce 3':'SF3.png','Company of Heroes 3':'CoH3.png'}
+>>>>>>> b5b775d (initial commit)
             for game in hwctool.settings.game_races:
                 if game in icon_dict:
                     myAct = QAction(QIcon(hwctool.settings.getResFile(icon_dict[game])), _(game), self, checkable=True)
@@ -625,7 +634,11 @@ class MainWindow(QMainWindow):
             label.setFixedWidth(self.raceWidth)
             container.addWidget(label, 0, 5, 1, 1)
 
+<<<<<<< HEAD
             colors = ("Blue", "Green", "Red", "Orange", "Pink", "Teal", "Purple", "White", "Yellow")
+=======
+            colors = ("Blue", "Green", "Red", "Orange", "Pink", "Teal", "Purple", "White", "Yellow","Black")
+>>>>>>> b5b775d (initial commit)
 
             # Color picker
             self.p1_color_widget = QComboBox()

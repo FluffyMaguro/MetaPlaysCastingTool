@@ -1,6 +1,13 @@
+<<<<<<< HEAD
 altgraph==0.17
 appdirs==1.4.4
 bsdiff4==1.1.5
+=======
+setuptools==49.6.0
+altgraph==0.17
+appdirs==1.4.4
+bsdiff4==1.2.6
+>>>>>>> b5b775d (initial commit)
 certifi==2020.11.8
 cffi==1.14.4
 chardet==3.0.4
@@ -17,11 +24,19 @@ pyinstaller-hooks-contrib==2020.10
 PyNaCl==1.4.0
 PyQt5==5.15.2
 PyQt5-sip==12.8.1
+<<<<<<< HEAD
 PyUpdater==3.1.1+53.g4c6b5b0
+=======
+PyUpdater==4.0
+>>>>>>> b5b775d (initial commit)
 pywin32==300
 pywin32-ctypes==0.2.0
 requests==2.25.0
 six==1.15.0
 stevedore==1.32.0
 urllib3==1.26.2
+<<<<<<< HEAD
 websockets==8.1
+=======
+websockets==8.1
+>>>>>>> b5b775d (initial commit)

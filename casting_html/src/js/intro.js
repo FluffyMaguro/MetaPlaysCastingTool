@@ -2,6 +2,10 @@ var socket = null;
 var isopen = false;
 var reconnectIntervalMs = 5000;
 var volume = 1.0;
+<<<<<<< HEAD
+=======
+
+>>>>>>> b5b775d (initial commit)
 var debug = false;
 var displayTime = 3.0;
 var cssFile = "";
@@ -21,7 +25,12 @@ var game_trans_intro = {
   "Age of Empires Online": "AoEO",
   "Age of Mythology": "AoM",
   "SpellForce 3": "SF3",
+<<<<<<< HEAD
   "Halo Wars 2": "HW2"
+=======
+  "Halo Wars 2": "HW2",
+  "Company of Heroes": "CoH3"
+>>>>>>> b5b775d (initial commit)
 };
 
 
@@ -81,21 +90,45 @@ function Connect() {
         update_current_game(jsonObject.game);
 
         // Custom colors
+<<<<<<< HEAD
         $(".box").css("background-image", `url(src/img/textures/${game_trans_intro[jsonObject.game]}/${jsonObject.data.intro_color}.png)`);
         $(".name, .name>span").css("color", jsonObject.data.intro_color);
+=======
+         console.log(game_trans_intro[jsonObject.game]);
+        $(".box").css("background-image", `url(src/img/textures/${game_trans_intro[jsonObject.game]}/${jsonObject.data.intro_color}.png)`);
+        if ((jsonObject.game == 'Company of Heroes 3') ) {
+          let originalString = jsonObject.data.race;
+          let modifiedString = originalString.replace(/ /g, "_");
+          $(".box").css("background-image", `url(src/img/textures/CoH3/${modifiedString}${jsonObject.data.intro_color}.png)`);
+        
+        }
+         // changed color to white
+         // $(".name, .name>span").css("color", jsonObject.data.intro_color);
+          $(".name, .name>span").css("color", 'White');
+       
+        
+>>>>>>> b5b775d (initial commit)
 
         $(".logo").css("display", jsonObject.data.display)
         if ((jsonObject.game == 'SpellForce 3') && jsonObject.data.logo.includes('Random')) {
           jsonObject.data.logo = 'src/img/races/SpellForce3_Random.png';
           console.log('SF3');
         }
+<<<<<<< HEAD
+=======
+       
+>>>>>>> b5b775d (initial commit)
         console.log('LOGO: ' + jsonObject.data.logo);
         console.log('GAME: ' + jsonObject.game);
 
         $(".logo").css("background-image", "url(" + jsonObject.data.logo + ")");
         $('.name span').html(jsonObject.data.name);
         $('.team span').html(jsonObject.data.team);
+<<<<<<< HEAD
         fillText();
+=======
+        fillText(jsonObject.game);
+>>>>>>> b5b775d (initial commit)
         var racelogo = document.getElementsByClassName("race")[0];
         var offset = (window.innerWidth - intro.offsetWidth) / 2;
         myAudio1.volume = jsonObject.data.volume / 40.0;
@@ -219,9 +252,22 @@ function Connect() {
   }
 };
 
+<<<<<<< HEAD
 function fillText() {
   $("div.box").find(".text-fill").textfill({
     maxFontPixels: 60
+=======
+function fillText(gamename) {
+   if(gamename=='Company of Heroes 3'){
+    fontpx=45;
+    }
+    else{
+    fontpx=60;
+    }
+  $("div.box").find(".text-fill").textfill({
+   
+    maxFontPixels: fontpx
+>>>>>>> b5b775d (initial commit)
   });
 }
 

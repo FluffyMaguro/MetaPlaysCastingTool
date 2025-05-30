@@ -18,7 +18,12 @@ var game_trans = {
   "Age of Empires Online": "AoEO",
   "Age of Mythology": "AoM",
   "SpellForce 3": "SF3",
+<<<<<<< HEAD
   "Halo Wars 2": "HW2"
+=======
+  "Halo Wars 2": "HW2",
+  "Company of Heroes 3": "CoH3"
+>>>>>>> b5b775d (initial commit)
 };
 
 init();
@@ -94,7 +99,11 @@ function setCurrentGame(data) {
 function udpateResultFormat() {
   var current_text = $('#score').text();
   console.log('Current text: ' + current_text)
+<<<<<<< HEAD
   if (currentGame == 'Age of Mythology' || currentGame == 'Age of Empires Online' || currentGame == 'WarCraft III' || currentGame == 'Age of Empires IV') {
+=======
+  if (currentGame == 'Age of Mythology' || currentGame == 'Age of Empires Online' || currentGame == 'WarCraft III' || currentGame == 'Age of Empires IV' || currentGame == 'Company of Heroes 3') {
+>>>>>>> b5b775d (initial commit)
     $('#score').text(current_text.replace('Bo ', 'Best of '));
   } else {
     $('#score').text(current_text.replace('Best of ', 'Bo '));
@@ -145,7 +154,11 @@ function insertData() {
     $(".score_right").css("color", "white");
   }
 
+<<<<<<< HEAD
   let games_with_colors = { "WarCraft III": "WC3", "Halo Wars 2": "HW2", "Age of Mythology": "AoM", "StarCraft II": "SC2", "SpellForce 3": "SF3" };
+=======
+  let games_with_colors = { "WarCraft III": "WC3", "Halo Wars 2": "HW2", "Age of Mythology": "AoM", "StarCraft II": "SC2", "SpellForce 3": "SF3", "Company of Heroes 3": "CoH3" };
+>>>>>>> b5b775d (initial commit)
   if (games_with_colors.hasOwnProperty(currentGame)) {
     $("div.box_left").css("background-image", `url(src/img/textures/${games_with_colors[currentGame]}/${data['player_colors'][0]}_Left.png)`);
     $("div.box_right").css("background-image", `url(src/img/textures/${games_with_colors[currentGame]}/${data['player_colors'][1]}_Right.png)`);
@@ -158,7 +171,11 @@ function insertData() {
   if ((data['logo1'].includes('HaloWars2_') && !(data['logo1'].includes('_Scoreboard'))) || (data['logo2'].includes('HaloWars2_') && !(data['logo2'].includes('_Scoreboard')))) {
     hw_spacer = '_Scoreboard';
   };
+<<<<<<< HEAD
 
+=======
+ 
+>>>>>>> b5b775d (initial commit)
   if ((currentGame == 'SpellForce 3') && (data['logo1'].includes('Random'))) {
     data['logo1'] = 'src/img/races/SpellForce3_Random.png'
   };
@@ -217,6 +234,38 @@ function setWinner(winner) {
   }
   storeData('data');
 }
+<<<<<<< HEAD
+=======
+function Coh3changescoreboxsize() {
+  for (let i = 6; i <= 16; i++) {
+  const element = document.getElementById(`circle-2-${i}`);
+   
+  if (!element) {
+    const circle = document.getElementsByClassName('circle')[0];
+    if (circle) {
+    // Get current width and reduce it by i
+    const currentWidth = parseInt(getComputedStyle(circle).width);
+    let a=0;
+    if(i>=11){
+      a=5;
+    }
+    const newWidth = currentWidth - i+a;
+   
+    // Set the new width
+    const circles = document.getElementsByClassName('circle');
+
+    for (let f = 0; f < circles.length; f++) {
+        const objcircle = circles[f];
+      objcircle.style.width = newWidth + 'px';
+    } 
+    
+  console.log("applied");
+    break; // Exit loop on first missing element
+     }
+  }
+}
+}
+>>>>>>> b5b775d (initial commit)
 
 function insertIcons() {
   for (var j = 0; j < 2; j++) {
@@ -238,6 +287,14 @@ function insertIcons() {
         $('#score' + (j + 1).toString() + '-box').append('<div class="circle" id="circle-' + (j + 1).toString() + '-' + (i + 1).toString() + '" style="background-color: ' + color + width_style + '"></div>');
       }
     }
+<<<<<<< HEAD
+=======
+     console.log(currentGame);
+  if ((currentGame == 'Company of Heroes 3') ) {
+    Coh3changescoreboxsize();
+     console.log("Changed box size");
+  }
+>>>>>>> b5b775d (initial commit)
   } catch (e) { }
 }
 
